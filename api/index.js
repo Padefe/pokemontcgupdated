@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 app.use('/api', cardRoutes);
 
-app.get('/cards', async (req, res) =>
+app.get('/collection', async (req, res) =>
 {
     try
     {
