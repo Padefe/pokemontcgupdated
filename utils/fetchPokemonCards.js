@@ -1,7 +1,10 @@
 import {supabase} from '../config/supabase.js';
 
-export async function fetchPokemonCards() 
+//console.log("test fetchPokemonCards.js");
+
+/*xport async function fetchPokemonCards() 
 {
+    console.log("test fetch");
     const { data, error } = await supabase.from('Card').select('*');
 
     if (error) {
@@ -11,3 +14,4 @@ export async function fetchPokemonCards()
 
     return data;
 }
+*/

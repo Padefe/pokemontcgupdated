@@ -1,4 +1,6 @@
-import { fetchPokemonCards } from "../utils/fetchPokemonCards.js";
+//import { fetchPokemonCards } from "../utils/fetchPokemonCards.js";
+
+console.log("test cardController.js");
 
 export const getPokemonCards = async (req, res) =>
 {
