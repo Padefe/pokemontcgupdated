@@ -27,4 +27,4 @@ app.get('/collection', async (req, res) =>
     }
 });
 
-export const handler = serverless(app);
+export default serverless(app);
