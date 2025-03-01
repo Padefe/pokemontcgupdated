@@ -1,7 +1,7 @@
 import express from 'express';
-import pokemonRoutes from './routes/cardRoutes.js';
+import pokemonRoutes from '../routes/cardRoutes.js';
 import { config } from 'dotenv';
-import { fetchPokemonCards } from './utils/fetchPokemonCards.js';
+import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 
 config();
 
@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
-app.use('/api', pokemonRoutes);
+app.use('/api', cardRoutes);
 
 app.get('/cards', async (req, res) =>
 {
