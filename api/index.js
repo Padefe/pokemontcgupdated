@@ -23,7 +23,7 @@ app.get('/collection', async (req, res) =>
     }
     catch (error)
     {
-        res.status(500).json({ error: 'failed to fetch cards' });
+        res.status(500).json({ error: 'index.js: failed to fetch cards' });
     }
 });
 

@@ -9,6 +9,6 @@ export const getPokemonCards = async (req, res) =>
     }
     catch (error)
     {
-        res.status(500).json({ error: 'failed to fetch cards' });
+        res.status(500).json({ error: 'cardController.js: failed to fetch cards' });
     }
 }
