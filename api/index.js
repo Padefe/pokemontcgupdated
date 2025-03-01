@@ -1,4 +1,5 @@
 import express from 'express';
+import serverless from 'serverless-http';
 import cardRoutes from '../routes/cardRoutes.js';
 import { config } from 'dotenv';
 import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
@@ -6,7 +7,6 @@ import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 config();
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 
@@ -27,6 +27,4 @@ app.get('/collection', async (req, res) =>
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+export const handler = serverless(app);
