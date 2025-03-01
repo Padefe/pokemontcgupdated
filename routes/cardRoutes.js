@@ -5,6 +5,4 @@ const router = express.Router();
 
 router.get('/pokemon-cards', getPokemonCards);
 
-console.log("Test");
-
 export default router;

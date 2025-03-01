@@ -19,7 +19,7 @@ app.get('/collection', async (req, res) =>
     try
     {
         const cards = await fetchPokemonCards();
-        res.render('cards', { cards });
+        res.render('collection', { cards });
     }
     catch (error)
     {
