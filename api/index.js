@@ -1,5 +1,5 @@
 import express from 'express';
-import pokemonRoutes from '../routes/cardRoutes.js';
+import cardRoutes from '../routes/cardRoutes.js';
 import { config } from 'dotenv';
 import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 
