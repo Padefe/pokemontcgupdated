@@ -33,4 +33,5 @@ app.get('/', (req, res) => {
     }
 });
 */
+
 export default serverless(app);
