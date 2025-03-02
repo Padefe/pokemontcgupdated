@@ -13,7 +13,7 @@ console.log("test express");
 app.set('view engine', 'ejs');
 console.log("test view engine");
 
-app.set('views', './views');
+app.set('views');
 console.log("test views");
 
 app.use(express.static('public'));
