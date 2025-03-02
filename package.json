@@ -2,6 +2,9 @@
   "name": "pokemon-tcg-updated",
   "version": "1.0.0",
   "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
     "cors": "^2.8.5",
@@ -13,5 +16,7 @@
   },
   "devDependencies": {
     "@vercel/node": "^2.3.0"
-  }
+  },
+  "type": "module"
 }
+

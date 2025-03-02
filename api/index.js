@@ -1,32 +1,33 @@
 import express from 'express';
 import serverless from 'serverless-http';
-//import cardRoutes from '../routes/cardRoutes.js';
-//import { config } from 'dotenv';
+import cardRoutes from '../routes/cardRoutes.js';
+import { config } from 'dotenv';
 //import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 
-//config();
+config();
+console.log("test config");
 
 const app = express();
+console.log("test express");
 
-//app.set('view engine', 'ejs');
-//app.set('views', __dirname + '/../views');
-//app.use(express.static(__dirname + '/../public'));
+app.set('view engine', 'ejs');
+console.log("test view engine");
 
-//app.use('/api', cardRoutes);
-/*
+app.set('views', './views');
+console.log("test views");
+
+app.use(express.static('public'));
+console.log("test public");
+
+app.use('/api', cardRoutes);
+console.log("test cardRoutes");
+
 app.get('/', (req, res) => {
+    console.log("test index.js 2");
     res.render('index');
 });
-*/
-app.get('/', (req, res) => {
-    console.log("Root route hit"); // Log that the route was accessed
-    try {
-        res.send('Hello, world!');
-        console.log("Response sent successfully");
-    } catch (error) {
-        console.error("Error sending response:", error);
-    }
-});
+console.log("test /");
+
 
 /*app.get('/collection', async (req, res) =>
 {
@@ -43,5 +44,10 @@ app.get('/', (req, res) => {
     }
 });
 */
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
+console.log("test serverlisten");
 
 export default serverless(app);
