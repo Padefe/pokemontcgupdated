@@ -1,23 +1,29 @@
 import express from 'express';
 import serverless from 'serverless-http';
-import cardRoutes from '../routes/cardRoutes.js';
-import { config } from 'dotenv';
+//import cardRoutes from '../routes/cardRoutes.js';
+//import { config } from 'dotenv';
 //import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 
-config();
+//config();
 
 const app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/../views');
+//app.set('view engine', 'ejs');
+//app.set('views', __dirname + '/../views');
+//app.use(express.static(__dirname + '/../public'));
 
-app.use(express.static(__dirname + '/../public'));
-
-app.use('/api', cardRoutes);
-
+//app.use('/api', cardRoutes);
+/*
 app.get('/', (req, res) => {
     res.render('index');
 });
+*/
+app.get("/", (req, res) => 
+    {
+        console.log('Root route hit');
+        res.send('Express on Vercel');
+        console.log('Response sent');
+    });
 
 /*app.get('/collection', async (req, res) =>
 {
