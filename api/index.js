@@ -18,12 +18,15 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 */
-app.get("/", (req, res) => 
-    {
-        console.log('Root route hit');
-        res.send('Express on Vercel');
-        console.log('Response sent');
-    });
+app.get('/', (req, res) => {
+    console.log("Root route hit"); // Log that the route was accessed
+    try {
+        res.send('Hello, world!');
+        console.log("Response sent successfully");
+    } catch (error) {
+        console.error("Error sending response:", error);
+    }
+});
 
 /*app.get('/collection', async (req, res) =>
 {
