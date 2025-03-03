@@ -19,6 +19,7 @@ function displayCards(cards)
         const cardElement = document.createElement('div');
         cardElement.className = 'card';
         cardElement.innerHTML = `
+            <img src="${card.img_url}" alt="${card.card_name}" />
             <h3>${card.card_name}</h3>
             <p>${card.dex_number}</p>
         `;
