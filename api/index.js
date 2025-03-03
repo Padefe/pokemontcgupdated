@@ -1,5 +1,6 @@
 import express from 'express';
 import serverless from 'serverless-http';
+import path from 'path';
 import cardRoutes from '../routes/cardRoutes.js';
 import { config } from 'dotenv';
 //import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
@@ -16,7 +17,7 @@ app.use('/api', cardRoutes);
 
 app.get('/', (req, res) => {
     console.log("test index.js 2");
-    res.sendFile('index.html', { root: './public' });
+    res.sendFile('index.html', { root: path.join(__dirname, '../public') });
 });
 
 
