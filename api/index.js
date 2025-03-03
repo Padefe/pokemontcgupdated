@@ -20,7 +20,7 @@ app.use('/api', cardRoutes);
 
 app.get('/', (req, res) => {
     console.log("test index.js 2");
-    res.sendFile('index.html', { root: path.join(__dirname, '../public') });
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 
