@@ -19,10 +19,10 @@ function displayCards(cards)
         const cardElement = document.createElement('div');
         cardElement.className = 'card';
         cardElement.innerHTML = `
-            <img src="${card.image}" alt="${card.name}" />
-            <h3>${card.name}</h3>
-            <p>${card.description}</p>
+            <h3>${card.card_name}</h3>
+            <p>${card.dex_number}</p>
         `;
         cardsContainer.appendChild(cardElement);
     });
 }
+document.addEventListener('DOMContentLoaded', fetchCards);
