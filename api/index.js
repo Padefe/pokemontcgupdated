@@ -21,18 +21,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-
-app.get('/collection', async (req, res) =>
-{
-    try
-    {
-        const cards = await fetchPokemonCards();
-        res.sendFile(path.join(__dirname, '../public/collection.html'));
-    }
-    catch (error)
-    {
-        res.status(500).json({ error: 'index.js: failed to fetch cards' });
-    }
+app.get('/collection', async (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/collection.html'));
 });
 
 export default serverless(app);
