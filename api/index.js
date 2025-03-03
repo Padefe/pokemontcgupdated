@@ -16,16 +16,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/api', cardRoutes);
 
-app.get('/api/pokemon-cards', async (req, res) => {
-    try {
-      const cards = await fetchPokemonCards();
-      res.json(cards);
-    } catch (error) {
-      console.error('Failed to fetch cards:', error);
-      res.status(500).json({ error: 'Failed to fetch cards' });
-    }
-  });
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
@@ -33,6 +23,9 @@ app.get('/', (req, res) => {
 app.get('/collection', async (req, res) => {
     res.sendFile(path.join(__dirname, '../public/collection.html'));
 });
-
+ app.listen(3000, () => {
+    console.log('Server running on port 3000');
+}
+);
 export default serverless(app);
 
