@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import cardRoutes from '../routes/cardRoutes.js';
 import { config } from 'dotenv';
-import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 
 config();
 
