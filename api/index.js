@@ -2,9 +2,9 @@ import express from 'express';
 import serverless from 'serverless-http';
 import path from 'path';
 import { fileURLToPath } from 'url';
-//import cardRoutes from '../routes/cardRoutes.js';
+import cardRoutes from '../routes/cardRoutes.js';
 import { config } from 'dotenv';
-//import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
+import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 
 config();
 
@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-//app.use('/api', cardRoutes);
+app.use('/api', cardRoutes);
 
 app.get('/', (req, res) => {
     console.log("test index.js 2");
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 
 
 
-/*app.get('/collection', async (req, res) =>
+app.get('/collection', async (req, res) =>
 {
     console.log("test index.js 3");
     try
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
         res.status(500).json({ error: 'index.js: failed to fetch cards' });
     }
 });
-*/
+
 
 export default serverless(app);
 module.exports = app;
