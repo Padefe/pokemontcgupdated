@@ -1,18 +1,15 @@
 async function fetchCards() {
-    try
-    {
-    const response = await fetch('/api/pokemon-cards');
-    const cards = await response.json();
-    displayCards(cards);
+    try {
+        const response = await fetch('/api/pokemon-cards');
+        const cards = await response.json();
+        displayCards(cards);
     }
-    catch (error)
-    {
+    catch (error) {
         console.error('Failed to fetch cards', error);
     }
 }
 
-function displayCards(cards)
-{
+function displayCards(cards) {
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.innerHTML = '';
     cards.forEach(card => {

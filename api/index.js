@@ -23,9 +23,10 @@ app.get('/', (req, res) => {
 app.get('/collection', async (req, res) => {
     res.sendFile(path.join(__dirname, '../public/collection.html'));
 });
- app.listen(3000, () => {
-    console.log('Server running on port 3000');
-}
-);
+
+app.get('/shop', async (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/shop.html'));
+});
+
 export default serverless(app);
 
