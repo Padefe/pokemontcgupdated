@@ -1,7 +1,7 @@
 async function fetchCards() {
     try
     {
-    const response = await fetch('/api/cards');
+    const response = await fetch('/api/pokemon-cards');
     const cards = await response.json();
     displayCards(cards);
     }
