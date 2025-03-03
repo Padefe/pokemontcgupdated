@@ -16,7 +16,7 @@ app.use('/api', cardRoutes);
 
 app.get('/', (req, res) => {
     console.log("test index.js 2");
-    res.sendFile('index.html');
+    res.sendFile('index.html', { root: './public' });
 });
 
 
