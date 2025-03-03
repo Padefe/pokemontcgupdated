@@ -1,10 +1,8 @@
-import express from 'express';
-import { getPokemonCards } from '../controllers/cardController.js';
+//import express from 'express';
+//import { getPokemonCards } from '../controllers/cardController.js';
 
-const router = express.Router();
+//const router = express.Router();
 
-console.log('cardRoutes.js: router loaded');
+//router.get('/pokemon-cards', getPokemonCards);
 
-router.get('/pokemon-cards', getPokemonCards);
-
-export default router;
+//export default router;

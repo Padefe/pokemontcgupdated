@@ -2,7 +2,7 @@ import express from 'express';
 import serverless from 'serverless-http';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import cardRoutes from '../routes/cardRoutes.js';
+//import cardRoutes from '../routes/cardRoutes.js';
 import { config } from 'dotenv';
 //import { fetchPokemonCards } from '../utils/fetchPokemonCards.js';
 
@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/api', cardRoutes);
+//app.use('/api', cardRoutes);
 
 app.get('/', (req, res) => {
     console.log("test index.js 2");

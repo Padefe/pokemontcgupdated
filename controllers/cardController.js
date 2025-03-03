@@ -1,5 +1,5 @@
 //import { fetchPokemonCards } from "../utils/fetchPokemonCards.js";
-
+/*
 console.log("test cardController.js");
 
 export const getPokemonCards = async (req, res) =>
@@ -14,3 +14,4 @@ export const getPokemonCards = async (req, res) =>
         res.status(500).json({ error: 'cardController.js: failed to fetch cards' });
     }
 }
+    */
