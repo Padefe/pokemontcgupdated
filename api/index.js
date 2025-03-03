@@ -39,3 +39,4 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 */
 
 export default serverless(app);
+module.exports = app;
