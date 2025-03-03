@@ -18,10 +18,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 //app.use('/api', cardRoutes);
 
-app.get('/', (req, res) => {
-    console.log("test index.js 2");
-    res.sendFile(path.join(__dirname, '../public/index.html'));
-});
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 
 

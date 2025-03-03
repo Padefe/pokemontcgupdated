@@ -17,6 +17,12 @@
   "devDependencies": {
     "@vercel/node": "^2.3.0"
   },
-  "type": "module"
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
-
