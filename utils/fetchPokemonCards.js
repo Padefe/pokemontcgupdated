@@ -1,7 +1,5 @@
 import {supabase} from '../config/supabase.js';
 
-console.log("test fetchPokemonCards.js");
-
 export async function fetchPokemonCards() 
 {
     console.log("test fetch");

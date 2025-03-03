@@ -26,4 +26,4 @@ app.get('/collection', async (req, res) => {
 });
 
 export default serverless(app);
-module.exports = app;
+
