@@ -28,4 +28,8 @@ app.get('/shop', async (req, res) => {
     res.sendFile(path.join(__dirname, '../public/shop.html'));
 });
 
+app.get('/booster-pack', async (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/boosterPack.html'));
+});
+
 export default serverless(app);
