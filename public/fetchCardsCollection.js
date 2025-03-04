@@ -1,6 +1,15 @@
+
 async function fetchCards() {
-    try {
-        const response = await fetch('/api/pokemon-cards');
+    try
+    {
+        const user_id = localStorage.getItem('userid');
+        if (!user_id) {
+            console.error('No user ID found, redirecting to login.');
+            window.location.href = '/'; // Redirect to login page
+            return;
+        }
+
+        const response = await fetch(`/api/pokemon-cards?user_id=${user_id}`);
         const cards = await response.json();
         displayCards(cards);
     }

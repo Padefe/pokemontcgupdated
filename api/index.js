@@ -29,4 +29,3 @@ app.get('/shop', async (req, res) => {
 });
 
 export default serverless(app);
-
