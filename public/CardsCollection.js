@@ -26,7 +26,7 @@ function displayCards(cards) {
         cardElement.innerHTML = `
             <img src="${card.Card.img_url}" alt="${card.Card.card_name}" />
             <h3>${card.Card.card_name}</h3>
-            <p>${card.Card.dex_number}</p>
+            <p>${card.quantity}</p>
         `;
         cardsContainer.appendChild(cardElement);
     });
