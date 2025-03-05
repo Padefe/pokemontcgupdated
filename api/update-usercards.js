@@ -6,6 +6,7 @@ export default async function handler(req, res) {
         const updateCards = await updateUserCards(boosterPackCards);
         res.status(200).json(updateCards);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to update users cards' });
+        console.error("Error in API:", error);
+        res.status(500).json({ error: 'Failed to update users cards', details: error.message });
     }
 }

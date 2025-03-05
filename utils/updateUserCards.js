@@ -81,5 +81,5 @@ export async function updateUserCards(boosterPackCards) {
             return res.status(500).json({ success: false, message: 'Failed to update booster quantity' });
         }
     }
-    return updateCards;
+    return boosterPackCards;
 }

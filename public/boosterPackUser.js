@@ -78,7 +78,12 @@ async function updateUserCards(boosterPackCards, userID) {
             },
             body: JSON.stringify({ boosterPackCards, userID })
         });
+        const cardsUpdated = await response.json();
+        if (response.status === 200) {
+            fetchBooster()
+        }
     }
+
     catch (error) {
         console.error('Failed to update user cards:', error);
     }
