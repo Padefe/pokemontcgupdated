@@ -76,13 +76,10 @@ async function Buy(packID) {
         });
         
         const data = await response.json();
-        console.log('Received data:', data);
         if (response.status === 200) {
             console.log('Pack purchased:', packID);
+            alert
             fetchMoney();
         }
-    }
-    catch (error) {
-        console.error('Failed to buy pack:', error);
     }
 }
