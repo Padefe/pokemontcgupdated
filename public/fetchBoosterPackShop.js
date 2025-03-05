@@ -31,3 +31,31 @@ function displayBooster(boosterPack) {
     });
 }
 document.addEventListener('DOMContentLoaded', fetchBooster);
+
+async function fetchMoney() {
+    try
+    {
+        const user_id = localStorage.getItem('userid');
+        if (!user_id) {
+            console.error('No user ID found, redirecting to login.');
+            window.location.href = '/'; // Redirect to login page
+            return;
+        }
+
+        const response = await fetch(`/api/money?user_id=${user_id}`);
+        const money = await response.json();
+        displayMoney(money);
+    }
+    catch (error) {
+        console.error('Failed to fetch money', error);
+    }
+}
+function displayMoney(money) {
+    const moneyContainer = document.getElementById('money-container');
+    if (moneyContainer) {
+        moneyContainer.innerHTML = `<p>Money: $${money}</p>`;
+    } else {
+        console.error('Money container not found in DOM.');
+    }
+}
+document.addEventListener('DOMContentLoaded', fetchMoney);
