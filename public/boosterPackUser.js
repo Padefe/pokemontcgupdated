@@ -59,7 +59,7 @@ async function openBooster(boosterID, boosterName) {
         const boosterPackCards = await response.json();
         if (response.status === 200 && Array.isArray(boosterPackCards.cards)) {
             displayBoosterCards(boosterPackCards.cards);  // Pass the cards array to the function
-            updateUserCards(boosterPackCards.cards, userID);
+            updateUserCards(boosterPackCards);
         } else {
             console.error('Expected an array of cards, but got:', boosterPackCards);
         }

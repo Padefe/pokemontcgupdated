@@ -1,10 +1,10 @@
 import { updateUserCards } from "../utils/updateUserCards.js";
 
 export default async function handler(req, res) {
-    const { boosterPackCards, userID } = req.body;
-    console.log("From API: " + boosterPackCards);
+    const { boosterPackCards } = req.body;
+    console.log(boosterPackCards);
     try {
-        const updatecards = await updateUserCards(boosterPackCards, userID);
+        const updatecards = await updateUserCards(boosterPackCards);
         res.status(200).json(updatecards);
     } catch (error) {
         res.status(500).json({ error: 'Failed to update users cards' });
