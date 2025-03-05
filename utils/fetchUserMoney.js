@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabase";
+import { supabase } from "../config/supabase.js";
 
 export async function fetchUserMoney(user_id) {
     const { data: money, error } = await supabase
@@ -11,6 +11,5 @@ export async function fetchUserMoney(user_id) {
         console.error("fetch.js: Error fetching money:", error);
         return [];
     }
-    
     return money;
     }
