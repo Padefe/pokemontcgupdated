@@ -25,7 +25,7 @@ function displayBooster(boosterPack) {
             <img src="${pack.boosterimg_url}" alt="${pack.booster_name}" />
             <h3>${pack.booster_name}</h3>
             <p>${pack.price}</p>
-            <button>Buy</button>
+            <button onclick="Buy('${pack.booster_id}')">Buy</button>
         `;
         shopContainer.appendChild(packElement);
     });
@@ -63,3 +63,26 @@ function displayMoney(money) {
     }
 }
 document.addEventListener('DOMContentLoaded', fetchMoney);
+
+async function Buy(packID) {
+    const userID = localStorage.getItem('userid');
+    try {
+        const response = await fetch('/api/buy-pack', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ packID, userID })
+        });
+        
+        const data = await response.json();
+        console.log('Received data:', data);
+        if (response.status === 200) {
+            console.log('Pack purchased:', packID);
+            fetchMoney();
+        }
+    }
+    catch (error) {
+        console.error('Failed to buy pack:', error);
+    }
+}
