@@ -18,10 +18,8 @@ export async function registerUser(email, regword, regname) {
     if (existingUser) {
         return { success: false, message: "Email is already in use." };
     }
-    console.log("test2");
     // Step 2: Hash the password before storing it
     const hashedPassword = await bcrypt.hash(regword, 10); // '10' is the salt rounds
-    console.log("test3");
     // Step 3: Insert the new user into your custom 'users' table
     const { error: insertUserError } = await supabase
         .from('User') // Replace 'User' with your table name
@@ -38,7 +36,6 @@ export async function registerUser(email, regword, regname) {
         console.error("Error inserting user into users table: ", insertError);
         return { success: false, message: "Error saving user data." };
     }
-    console.log("test5");
     // Step 5: Return success
     return { success: true, message: "User registered successfully." };
 }

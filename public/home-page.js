@@ -6,7 +6,6 @@ async function login()
     const password = document.getElementById('password').value;
 
     try {
-        console.log('Attempting fetch...'); // Add this log
 
         const response_user = await fetch('/api/login', {
             method: 'POST', // This should be POST
@@ -16,13 +15,7 @@ async function login()
             body: JSON.stringify({ username, password })
         });
 
-        console.log('Response received:', response_user.status);
-
         const data = await response_user.json();
-
-        console.log('Received data:', data);
-        console.log('User ID:', data.user.user_id);
-        console.log('User Name:', data.user.user_name);
 
         if (response_user.status === 200) {
             localStorage.setItem('userid', data.user.user_id);
@@ -61,10 +54,6 @@ async function register() {
             alert("Both fields are required!");
             return;
         }
-
-        console.log(regname);
-        console.log(regword);
-        console.log(email);
 
         // Send the request to the API
         const response = await fetch("/api/register", {
