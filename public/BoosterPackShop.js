@@ -25,7 +25,7 @@ function displayBooster(boosterPack) {
             <img src="${pack.boosterimg_url}" alt="${pack.booster_name}" />
             <h3>${pack.booster_name}</h3>
             <p>${pack.price}</p>
-            <button onclick="Buy('${pack.booster_id}')">Buy</button>
+            <button onclick="Buy('${pack.booster_id}', '${pack.booster_name}')">Buy</button>
         `;
         shopContainer.appendChild(packElement);
     });
@@ -64,7 +64,7 @@ function displayMoney(money) {
 }
 document.addEventListener('DOMContentLoaded', fetchMoney);
 
-async function Buy(packID) {
+async function Buy(packID, boosterName) {
     const userID = localStorage.getItem('userid');
     try {
         const response = await fetch('/api/buy-pack', {
@@ -78,8 +78,12 @@ async function Buy(packID) {
         const data = await response.json();
         if (response.status === 200) {
             console.log('Pack purchased:', packID);
-            alert
+            alert(`${boosterName} bought`);
             fetchMoney();
         }
+    }
+    catch (error)
+    {
+        console.error('Failed to purchase pack:', error);
     }
 }
