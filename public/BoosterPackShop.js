@@ -45,7 +45,6 @@ async function fetchMoney() {
         const response = await fetch(`/api/money?user_id=${user_id}`);
         const money = await response.json();
 
-        console.log('Money: from fetch', money);
         displayMoney(money);
     }
     catch (error) {
@@ -56,7 +55,6 @@ function displayMoney(money) {
     const moneyContainer = document.getElementById('money-container');
     if (moneyContainer) {
         const moneyValue = money?.balance ?? 0;
-        console.log('Money value:', moneyValue);
         moneyContainer.innerHTML = `<p>Money: $${moneyValue}</p>`;
     } else {
         console.error('Money container not found in DOM.');
@@ -77,7 +75,6 @@ async function Buy(packID, boosterName) {
         
         const data = await response.json();
         if (response.status === 200) {
-            console.log('Pack purchased:', packID);
             alert(`${boosterName} bought`);
             fetchMoney();
         }
