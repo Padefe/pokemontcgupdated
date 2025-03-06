@@ -71,8 +71,36 @@ export async function updateUserCards(boosterPackCards) {
 
                 }
             }
+
         if (updateError) {
             return res.status(500).json({ success: false, message: 'Failed to update booster quantity' });
+        }
+
+    }
+    const { data: booster2, error: fetchError2 } = await supabase
+    .from('User_Booster')
+    .select('booster_quantity')
+    .eq('booster_id', packID)
+    .eq('user_id', userID)
+    .single();
+
+    if (fetchError2 && fetchError2.code !== 'PGRST116') {
+        // Handle error fetching row
+        return res.status(500).json({ success: false, message: 'Failed to fetch existing data' });
+    }
+
+    console.log(booster2.booster_quantity);
+    if(booster2.booster_quantity <= 0){
+        const { error: deleteError } = await supabase
+            .from('User_Booster')
+            .delete()
+            .eq('booster_id', packID)
+            .eq('user_id', userID);
+
+        if (deleteError) {
+            console.error("Error deleting booster data:", deleteError);
+        } else {
+            console.log("Booster data deleted successfully");
         }
     }
     return boosterPackCards;

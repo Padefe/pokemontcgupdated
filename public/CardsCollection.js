@@ -18,6 +18,9 @@ async function fetchCards() {
 }
 
 function displayCards(cards) {
+
+    cards.sort((a, b) => a.Card.dex_number - b.Card.dex_number);
+
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.innerHTML = '';
     cards.forEach(card => {
@@ -26,7 +29,8 @@ function displayCards(cards) {
         cardElement.innerHTML = `
             <img src="${card.Card.img_url}" alt="${card.Card.card_name}" />
             <h3>${card.Card.card_name}</h3>
-            <p>${card.quantity}</p>
+            <p>#${card.quantity}</p>
+            <p>Sell Price: $${card.Card.sell_price}</p>
         `;
         cardsContainer.appendChild(cardElement);
     });

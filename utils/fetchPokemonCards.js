@@ -5,7 +5,7 @@ export async function fetchPokemonCards(user_id)
 
     const { data, error } = await supabase
     .from('User_cards')
-    .select('*, Card(card_name, dex_number, img_url)')
+    .select('*, Card(card_name, dex_number, img_url, sell_price)')
     .eq('user_id', user_id);
 
     if (error) {

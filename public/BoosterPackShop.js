@@ -24,7 +24,7 @@ function displayBooster(boosterPack) {
         packElement.innerHTML = `
             <img src="${pack.boosterimg_url}" alt="${pack.booster_name}" />
             <h3>${pack.booster_name}</h3>
-            <p>${pack.price}</p>
+            <p>$${pack.price}</p>
             <button onclick="Buy('${pack.booster_id}', '${pack.booster_name}')">Buy</button>
         `;
         shopContainer.appendChild(packElement);

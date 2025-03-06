@@ -92,37 +92,31 @@ async function updateUserCards(boosterPackCards, userID) {
 async function displayBoosterCards(boosterPackCards) {
     // Create the canvas element dynamically
     const canvas = document.createElement('canvas');
-    canvas.id = 'boosterCanvas';  // Set an ID for future reference
-    canvas.width = window.innerWidth;  // Set canvas width to match the viewport
-    canvas.height = window.innerHeight;  // Set canvas height to match the viewport
-
-    // Style the canvas to position it as an overlay
-    canvas.style.position = 'fixed';  // Fixed position so it stays in place
-    canvas.style.top = '0';  // Align to the top of the screen
-    canvas.style.left = '0';  // Align to the left of the screen
-    canvas.style.zIndex = '9999';  // Ensure the canvas appears on top of other elements
-    canvas.style.pointerEvents = 'auto';  // Allow interaction with the canvas
-
-    // Append the canvas to the body (or another element)
+    canvas.id = 'boosterCanvas';
     document.body.appendChild(canvas);
 
-    // Get the canvas context
+    // Set canvas to take up the entire viewport
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Style the canvas
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.zIndex = '9999';
+    canvas.style.pointerEvents = 'auto';
+
     const ctx = canvas.getContext('2d');
 
-    // Solid gray background
-    ctx.fillStyle = '#333333';  // Dark solid gray
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Set up some initial variables
+    // Card constants
     const cardWidth = 150;
     const cardHeight = 220;
-    const spacing = 20;  // Space between cards
     const cardsToOpen = boosterPackCards.length;
 
     let cardIndex = 0;
-    const flipProgressArray = new Array(cardsToOpen).fill(0);  // Initialize flip progress for each card
+    const flipProgressArray = new Array(cardsToOpen).fill(0);  // Flip progress array
 
-    // Load the images for the cards
+    // Load images for each card
     const cardImages = await Promise.all(boosterPackCards.map(card => loadImage(card.img_url)));
 
     // Function to load card images
@@ -134,25 +128,27 @@ async function displayBoosterCards(boosterPackCards) {
         });
     }
 
-    // Function to draw a card on the canvas with flip animation
+    // Function to draw each card with a flip animation
     function drawCard(card, cardImg, x, y, flipProgress) {
         ctx.save();
         ctx.translate(x, y);
 
-        // Draw the card background (white or colored)
+        // Draw card background
         ctx.fillStyle = 'white';
         ctx.fillRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight);
 
-        // Apply flip animation (draw only part of the card)
+        // Draw the card image
         const flipWidth = cardWidth * flipProgress;
-        ctx.drawImage(cardImg, -cardWidth / 2, -cardHeight / 2, flipWidth, cardHeight);
+        const flipHeight = cardHeight * flipProgress;
 
-        // Add card name and rarity
+        // Ensure the image is scaled correctly to avoid clipping
+        ctx.drawImage(cardImg, -cardWidth / 2, -cardHeight / 2, flipWidth, flipHeight);
+
+        // Add card name and rarity text
         ctx.fillStyle = 'black';
         ctx.font = '16px Arial';
         ctx.textAlign = 'center';
         ctx.fillText(card.card_name, 0, cardHeight / 2 + 20);
-
         ctx.font = '14px Arial';
         ctx.fillText(`Rarity: ${card.rarity}`, 0, cardHeight / 2 + 40);
 
@@ -162,33 +158,77 @@ async function displayBoosterCards(boosterPackCards) {
     // Clear the canvas before drawing
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Animate the opening of the cards (one at a time)
-    const interval = setInterval(() => {
-        if (cardIndex < cardsToOpen) {
-            // Draw the current card
-            const x = (cardIndex * (cardWidth + spacing)) + (canvas.width - (cardsToOpen * (cardWidth + spacing))) / 2;
-            const y = canvas.height / 2;
+    // Positioning logic
+    const isMobile = window.innerWidth <= 600;  // Mobile check
+    const initialX = (canvas.width - cardWidth) / 2;
+    const initialY = canvas.height / 2 - cardHeight / 2;  // Start from the center
 
-            // Draw the card with flip progress
-            drawCard(boosterPackCards[cardIndex], cardImages[cardIndex], x, y, flipProgressArray[cardIndex]);
+    // Mobile version: Stack cards on top of each other
+    const mobileCardYPosition = (cardIndex) => {
+        return initialY + cardIndex * 50;  // Stack cards vertically with space between them
+    };
 
-            // Update flip progress for this card
-            flipProgressArray[cardIndex] += 0.1;  // Faster flip progress (can tweak this value for speed)
+    // Desktop version: Arrange cards in a 4x2 grid
+    const desktopCardPosition = (cardIndex) => {
+        const row = Math.floor(cardIndex / 4);
+        const col = cardIndex % 4;
+        const x = initialX + col * (cardWidth + 20);  // Horizontal spacing between cards
+        const y = initialY + row * (cardHeight + 20);  // Vertical spacing between rows
+        return { x, y };
+    };
 
-            // Move to the next card when this card has finished flipping
-            if (flipProgressArray[cardIndex] >= 1) {
-                cardIndex++;
+    // Function to animate the card flips
+    function animateCards() {
+        const interval = setInterval(() => {
+            if (cardIndex < cardsToOpen) {
+                let x, y;
+
+                if (isMobile) {
+                    y = mobileCardYPosition(cardIndex);
+                    x = initialX;  // Center cards horizontally
+                } else {
+                    const position = desktopCardPosition(cardIndex);
+                    x = position.x;
+                    y = position.y;
+                }
+
+                // Draw the card with current flip progress
+                drawCard(boosterPackCards[cardIndex], cardImages[cardIndex], x, y, flipProgressArray[cardIndex]);
+
+                // Update the flip progress (flip quicker, 0.3 per frame for faster flip)
+                flipProgressArray[cardIndex] += 0.3;  // Flip quicker (adjust speed here)
+
+                // Move to the next card after the current one has fully flipped
+                if (flipProgressArray[cardIndex] >= 1) {
+                    cardIndex++;
+                    // Reset flip for the next card
+                    flipProgressArray[cardIndex] = 0;
+                }
+            } else {
+                clearInterval(interval);  // Stop the animation when all cards are revealed
             }
-        } else {
-            clearInterval(interval);  // Stop the animation when all cards are displayed
-        }
-    }, 50);  // Faster animation by reducing interval to 50ms
+        }, isMobile ? 300 : 150);  // Faster flip speed (300ms delay for mobile, 150ms for desktop)
+    }
 
-    // Add a click event to close the canvas when clicked anywhere
+    // Start the card animation
+    animateCards();
+
+    // Resize event listener to adjust canvas and card positions dynamically
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initialX = (canvas.width - cardWidth) / 2;
+        initialY = canvas.height / 2 - cardHeight / 2;
+    });
+
+    // Click event to remove the canvas when clicked
     canvas.addEventListener('click', () => {
-        document.body.removeChild(canvas);  // Remove the canvas from the DOM
+        document.body.removeChild(canvas);  // Remove the canvas from DOM
     });
 }
+
+
+
 
 function logoutUser() {
     localStorage.removeItem("jwt_token"); // Remove token
