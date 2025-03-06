@@ -84,3 +84,9 @@ async function Buy(packID, boosterName) {
         console.error('Failed to purchase pack:', error);
     }
 }
+function logoutUser() {
+    localStorage.removeItem("jwt_token"); // Remove token
+    localStorage.removeItem("userid");
+    localStorage.removeItem("username");
+    window.location.href = "/"; // Redirect to login
+}

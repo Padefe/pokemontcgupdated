@@ -189,3 +189,10 @@ async function displayBoosterCards(boosterPackCards) {
         document.body.removeChild(canvas);  // Remove the canvas from the DOM
     });
 }
+
+function logoutUser() {
+    localStorage.removeItem("jwt_token"); // Remove token
+    localStorage.removeItem("userid");
+    localStorage.removeItem("username");
+    window.location.href = "/"; // Redirect to login
+}
