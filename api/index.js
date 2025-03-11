@@ -32,4 +32,12 @@ app.get('/booster-pack', async (req, res) => {
     res.sendFile(path.join(__dirname, '../public/boosterPack.html'));
 });
 
+app.get('/play', async (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/boosterPack.html'));
+});
+
+app.get('/play-start', async (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/boosterPack.html'));
+});
+
 export default serverless(app);

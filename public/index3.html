@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon TCG Card Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        input {
+            padding: 5px;
+            width: 300px;
+            margin: 5px;
+            font-size: small;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 500px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Pokémon TCG Card Viewer</h1>
+    <button onclick="fetchCard()">Get First Card</button>
+    <div id="cardInfo"></div>
+
+    <script>
+        let dexnumber = 493;
+        async function fetchCard() {
+            
+            let currentDexNumber = 1 + dexnumber; // or however you want to set it
+
+            const response = await fetch(`/api/test?dex=${currentDexNumber}`);
+            const card = await response.json();
+
+            console.log(card.card.dex_number);
+
+            dexnumber = card.card.dex_number;
+
+            console.log(dexnumber);
+
+            document.getElementById("cardInfo").innerHTML = `
+                <h2>${card.card.card_name}</h2>
+                <img src="${card.card.img_url}" alt="${card.card.card_name}" style="width: 250px; height: auto;">
+                <br>
+                <p>Damage ${card.card.card_damage ?? 0} + ${card.card.card_name} + ${card.card.dex_number} + ${card.card.card_weight} + ${card.card.card_height}</p>
+                <input type="text" id="height" placeholder="Enter height (e.g., 2,4)">
+                <input type="text" id="weight" placeholder="Enter weight (e.g., 15)">
+                <input type="number" id="damage" placeholder ="Enter damage">
+                <button onclick="updateHeightWeight('${card.card.card_id}')">Update Height & Weight</button>
+            `;
+        }
+
+        async function updateHeightWeight(card_id) {
+            const height = document.getElementById("height").value;
+            const weight = document.getElementById("weight").value;
+            const damage = document.getElementById("damage").value;
+
+            await fetch("/api/test.js", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ card_id, height, weight, damage })
+            });
+
+            fetchCard();
+        }
+    </script>
+</body>
+
+</html>

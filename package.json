@@ -2,13 +2,16 @@
   "name": "pokemon-tcg-updated",
   "version": "1.0.0",
   "main": "api/index.js",
+  "type": "module",
   "scripts": {
     "start": "node api/index.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
+    "axios": "^1.8.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
+    "cheerio": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",

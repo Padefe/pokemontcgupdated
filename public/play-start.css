@@ -1,0 +1,12 @@
+#cardDisplay
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+img
+{
+    width: 50px;
+}
