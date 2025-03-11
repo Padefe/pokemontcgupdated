@@ -100,7 +100,7 @@ function toggleCardSelection(cardId, image) {
         selectedCards = selectedCards.filter(id => id !== cardId);  // Remove card from selection
     } else {
         // Check if the maximum number of selected cards (5) has been reached
-        if (selectedCards.length >= 5) {
+        if (selectedCards.length >= 6) {
             alert('You can only select up to 5 cards.');
             return;
         }
@@ -137,21 +137,25 @@ function updateSelectedCardsDisplay() {
 }
 
 function startPlay() {
-    document.getElementById('submit-gymLeader').addEventListener('click', () => {
-        const selectedRegion = document.getElementById('region').value;
-        const selectedLeader = document.getElementById('gymLeader').value;
+    if (!selectedRegion || !selectedLeader) {
+        alert("RELOAD SIDEN");
+    }
+    else {
         const user_id = localStorage.getItem('userid');
 
-        // Get the 6 selected card IDs (you can get these IDs from your card selection logic)
-        const selectedCardIds = ["card1", "card2", "card3", "card4", "card5", "card6"];  // Replace with actual IDs
+        if (selectedCards.length !== 6) {
+            alert('You need to select exactly 6 cards.');
+            return;
+        }
 
         // Construct the URL with query parameters
-        const playPageUrl = `/play.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCardIds.join(',')}`;
+        const playPageUrl = `/play.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCards.join(',')}`;
 
         // Redirect to the play page with the URL parameters
         window.location.href = playPageUrl;
-    });
-}
+    }
+};
+
 
 async function multiplayer() {
     const multiplayer = document.getElementById('multiplayer');
@@ -190,93 +194,5 @@ function brockEasyAI(pokemonName) {
 // Example: Brock plays Diglett
 brockEasyAI("Cubone");
 */
-const kantoAverages = {
-    sell_price: 29.33324503,
-    dex_number: 76,
-    hp: 61.98675497,
-    height: 119.1276821,
-    damage: 32.45033113,
-    weight: 45.94165563
-};
 
-const brockPokemon = {
-    Mankey: { dex_number: 56, sell_price: 0.45, card_hp: 30, card_height: 50.8, card_damage: 10, card_weight: 28.12 },
-    Diglett: { dex_number: 50, sell_price: 4.21, card_hp: 30, card_height: 20.32, card_damage: 30, card_weight: 0.91 },
-    Sandshrew: { dex_number: 27, sell_price: 1.11, card_hp: 40, card_height: 60.96, card_damage: 10, card_weight: 11.79 },
-    Geodude: { dex_number: 74, sell_price: 0.46, card_hp: 50, card_height: 40.64, card_damage: 10, card_weight: 19.96 },
-    Cubone: { dex_number: 104, sell_price: 0.71, card_hp: 40, card_height: 40.64, card_damage: 10, card_weight: 6.35 },
-    Machop: { dex_number: 66, sell_price: 0.6, card_hp: 50, card_height: 78.74, card_damage: 20, card_weight: 19.5 }
-};
-
-// Function to calculate the adjusted stat based on the formula
-function adjustedStat(pokemonStat, kantoStat, brockStat) {
-    const adjustment = (pokemonStat - kantoStat) + (pokemonStat - brockStat);
-    return adjustment;
-}
-
-// Function to calculate the best stat for a given Pokémon
-function bestStatForPokemon(pokemonName) {
-    const pokemon = brockPokemon[pokemonName];
-
-    // Calculate adjusted stats for each category
-    const adjustedStats = {
-        sell_price: adjustedStat(pokemon.sell_price, kantoAverages.sell_price, brockAverages.sell_price),
-        dex_number: adjustedStat(pokemon.dex_number, kantoAverages.dex_number, brockAverages.dex_number),
-        hp: adjustedStat(pokemon.card_hp, kantoAverages.hp, brockAverages.hp),
-        height: adjustedStat(pokemon.card_height, kantoAverages.height, brockAverages.height),
-        damage: adjustedStat(pokemon.card_damage, kantoAverages.damage, brockAverages.damage),
-        weight: adjustedStat(pokemon.card_weight, kantoAverages.weight, brockAverages.weight)
-    };
-
-
-    // Find the stat with the smallest adjusted value (best stat)
-    let bestStat = Object.keys(adjustedStats).reduce((a, b) => adjustedStats[a] < adjustedStats[b] ? a : b);
-
-    return { bestStat, value: adjustedStats[bestStat] };
-}
-
-// Calculate Brock's averages for comparison
-function calculateBrockAverages() {
-    const totalPokemon = Object.values(brockPokemon);
-    const numPokemon = totalPokemon.length;
-
-    let total = {
-        sell_price: 0,
-        dex_number: 0,
-        card_hp: 0,
-        card_height: 0,
-        card_damage: 0,
-        card_weight: 0
-    };
-
-    totalPokemon.forEach(pokemon => {
-        total.sell_price += pokemon.sell_price;
-        total.dex_number += pokemon.dex_number;
-        total.card_hp += pokemon.card_hp;
-        total.card_height += pokemon.card_height;
-        total.card_damage += pokemon.card_damage;
-        total.card_weight += pokemon.card_weight;
-    });
-
-    const averages = {
-        sell_price: total.sell_price / numPokemon,
-        dex_number: total.dex_number / numPokemon,
-        hp: total.card_hp / numPokemon,
-        height: total.card_height / numPokemon,
-        damage: total.card_damage / numPokemon,
-        weight: total.card_weight / numPokemon
-    };
-
-    console.log('Brock\'s averages:', averages);
-    return averages;
-}
-
-// Calculate Brock's averages for comparison
-const brockAverages = calculateBrockAverages();
-
-// Calculate best stat for each Pokémon
-const bestStats = Object.keys(brockPokemon).map(pokemon => {
-    const result = bestStatForPokemon(pokemon);
-    return result;
-});
 
