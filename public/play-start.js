@@ -1,5 +1,6 @@
 let selectedCards = [];
 let selectedRegion;
+let selectedLeader;
 
 async function singleplayer() {
     const singleplayer = document.getElementById('singleplayer');
@@ -28,7 +29,7 @@ async function singleplayer() {
                 <button id="submit-gymLeader">Choose gym leader</button>
             `;
         document.getElementById('submit-gymLeader').addEventListener('click', () => {
-            const selectedLeader = document.getElementById('gymLeader').value;
+            selectedLeader = document.getElementById('gymLeader').value;
             console.log("Selected gym leader:", selectedLeader);
 
             const user_id = localStorage.getItem('userid');
@@ -90,7 +91,7 @@ function displayCards(cards) {
 function toggleCardSelection(cardId, image) {
     const cardElement = image.closest('.card');
     const isSelected = cardElement.classList.contains('selected');
-    
+
     if (isSelected) {
         // Deselect the card
         cardElement.classList.remove('selected');
@@ -132,6 +133,23 @@ function updateSelectedCardsDisplay() {
             <p>Card ID: ${cardId}</p>
         `;
         displayContainer.appendChild(selectedCardElement);
+    });
+}
+
+function startPlay() {
+    document.getElementById('submit-gymLeader').addEventListener('click', () => {
+        const selectedRegion = document.getElementById('region').value;
+        const selectedLeader = document.getElementById('gymLeader').value;
+        const user_id = localStorage.getItem('userid');
+
+        // Get the 6 selected card IDs (you can get these IDs from your card selection logic)
+        const selectedCardIds = ["card1", "card2", "card3", "card4", "card5", "card6"];  // Replace with actual IDs
+
+        // Construct the URL with query parameters
+        const playPageUrl = `/play.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCardIds.join(',')}`;
+
+        // Redirect to the play page with the URL parameters
+        window.location.href = playPageUrl;
     });
 }
 
