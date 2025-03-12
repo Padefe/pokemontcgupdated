@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sPlay.css">
+</head>
+
+<body>
+    <div id="gameArea">
+        <div id="player">
+            <div id="playerCardStats">
+                <div class="statRowP">
+                    <p id="playerCardName"></p> <!-- Player card's name -->
+                </div>
+                <div class="statRowP">
+                    <button id="pSelectDex" class="statButton" onclick="selectDex()">Select Dex</button>
+                    <p id="playerCardDex"></p>
+                </div>
+                <div class="statRowP">
+                    <button id="pSelectHp" class="statButton" onclick="selectHP()">Select HP</button>
+                    <p id="playerCardHP"></p>
+                </div>
+                <div class="statRowP">
+                    <button id="pSelectHeight" class="statButton" onclick="selectHeight()">Select Height</button>
+                    <p id="playerCardHeight"></p>
+                </div>
+                <div class="statRowP">
+                    <button id="pSelectWeight" class="statButton" onclick="selectWeight()">Select Weight</button>
+                    <p id="playerCardWeight"></p>
+                </div>
+                <div class="statRowP">
+                    <button id="pSelectDamage" class="statButton" onclick="selectDamage()">Select Damage</button>
+                    <p id="playerCardDamage"></p>
+                </div>
+                <div class="statRowP">
+                    <button id="pSelectSell" class="statButton" onclick="selectSell()">Select Sell</button>
+                    <p id="playerCardSell"></p>
+                </div>
+                <div class="statRowP">
+                    <p id="RamainingCardsPlayer"></p>
+                </div>
+            </div>
+            <img id="playerCardImage" src="" alt="Player's Card">
+            
+        </div>
+        <div id="centerContainer">
+            <div id="winnerInfo"></div>
+            <div>
+                <button id="nextRound" onclick="startRound()">Next</button>
+            </div>
+        </div>
+        <div id="trainer">
+            <img id="trainerCardImage" src="" alt="Trainer's Card">
+            <div id="trainerCardStats">
+                <div class="statRow">
+                    <p id="RamainingCardsTrainer"></p>
+                </div>
+                <div class="statRow">
+                    <p id="trainerCardName"></p>
+                </div>
+                <div class="statRow">
+                    <p id="trainerCardDex"></p>
+                </div>
+                <div class="statRow">
+                    <p id="trainerCardHP"></p>
+                </div>
+                <div class="statRow">
+                    <p id="trainerCardHeight"></p>
+                </div>
+                <div class="statRow">
+                    <p id="trainerCardWeight"></p>
+                </div>
+                <div class="statRow">
+                    <p id="trainerCardDamage"></p>
+                </div>
+                <div class="statRow">
+                    <p id="trainerCardSell"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="sPlay.js"></script>
+</body>
+
+</html>

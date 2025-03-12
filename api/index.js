@@ -33,11 +33,11 @@ app.get('/booster-pack', async (req, res) => {
 });
 
 app.get('/play', async (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/boosterPack.html'));
+    res.sendFile(path.join(__dirname, '../public/sPlay.html'));
 });
 
 app.get('/play-start', async (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/boosterPack.html'));
+    res.sendFile(path.join(__dirname, '../public/play-start.html'));
 });
 
 export default serverless(app);

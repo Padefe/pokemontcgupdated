@@ -3,13 +3,11 @@ let selectedRegion;
 let selectedLeader;
 
 async function singleplayer() {
-    const singleplayer = document.getElementById('singleplayer');
-    singleplayer.innerHTML = `
+    const singleplayerR = document.getElementById('singleplayerR');
+    singleplayerR.innerHTML = `
         <label for="region">Choose region:</label>
         <select id="region" name="region">
             <option value="Kanto">Kanto</option>
-            <option value="Johto">Johto</option>
-            <option value="Hoenn">hoenn</option>
         </select>
         <button id="submit-region">Choose region</button>
     `;
@@ -18,16 +16,31 @@ async function singleplayer() {
     document.getElementById('submit-region').addEventListener('click', () => {
         selectedRegion = document.getElementById('region').value;
         console.log("Selected Region:", selectedRegion);
+        const singleplayerL = document.getElementById('singleplayerL');
         if (selectedRegion === "Kanto")
-            singleplayer.innerHTML = `
+            singleplayerL.innerHTML = `
                 <label for="gymLeader">Choose gym leader:</label>
                 <select id="gymLeader" name="gymLeader">
                     <option value="Brock">Brock</option>
                     <option value="Misty">Misty</option>
                     <option value="LtSurge">Lt. Surge</option>
+                    <option value="Erika">Erika</option>
+                    <option value="Koga">Koga</option>
+                    <option value="Sabrina">Sabrina</option>
+                    <option value="Blaine">Blaine</option>
+                    <option value="Giovanni">Giovanni</option>
+                    <option value="Koga">Lorelei</option>
+                    <option value="Sabrina">Bruno</option>
+                    <option value="Blaine">Agatha</option>
+                    <option value="Giovanni">Lance</option>
                 </select>
                 <button id="submit-gymLeader">Choose gym leader</button>
             `;
+        else if (selectedRegion === "Johto")
+            singleplayerL.innerHTML = `
+        <label for="gymLeader">Choose gym leader:</label>
+        <select id="gymLeader" name="gymLeader">
+                `;
         document.getElementById('submit-gymLeader').addEventListener('click', () => {
             selectedLeader = document.getElementById('gymLeader').value;
             console.log("Selected gym leader:", selectedLeader);
@@ -149,7 +162,7 @@ function startPlay() {
         }
 
         // Construct the URL with query parameters
-        const playPageUrl = `/play.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCards.join(',')}`;
+        const playPageUrl = `/sPlay.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCards.join(',')}`;
 
         // Redirect to the play page with the URL parameters
         window.location.href = playPageUrl;
@@ -171,28 +184,12 @@ async function multiplayer() {
 
 }
 
-
-/*const brockPokemon = {
-    Diglett: { sell_price: 4.21, card_hp: 30, card_height: 20.32, card_damage: 30, card_weight: 0.91 },
-    Mankey: { sell_price: 0.45, card_hp: 30, card_height: 50.8, card_damage: 10, card_weight: 28.12 },
-    Sandshrew: { sell_price: 1.11, card_hp: 40, card_height: 60.96, card_damage: 10, card_weight: 11.79 },
-    Geodude: { sell_price: 0.46, card_hp: 50, card_height: 40.64, card_damage: 10, card_weight: 19.96 },
-    Cubone: { sell_price: 0.71, card_hp: 40, card_height: 40.64, card_damage: 10, card_weight: 6.35 },
-    Machop: { sell_price: 0.6, card_hp: 50, card_height: 78.74, card_damage: 20, card_weight: 19.5 }
-};
-
-function brockEasyAI(pokemonName) {
-    const pokemon = brockPokemon[pokemonName];
-
-    // Find the best stat
-    let bestStat = Object.keys(pokemon).reduce((a, b) => pokemon[a] > pokemon[b] ? a : b);
-
-    console.log(`Brock chooses ${bestStat} with a value of ${pokemon[bestStat]}`);
-    return bestStat;
+document.addEventListener('DOMContentLoaded', fetchCards);
+function logoutUser() {
+    localStorage.removeItem("jwt_token"); // Remove token
+    localStorage.removeItem("userid");
+    localStorage.removeItem("username");
+    window.location.href = "/"; // Redirect to login
 }
-
-// Example: Brock plays Diglett
-brockEasyAI("Cubone");
-*/
 
 

@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="play-start.css">
 </head>
 <body>
+    <div class="top bar">
+        <a href="boosterPack.html">Booster pack</a>
+        <a href="shop.html">Shop</a>
+        <a href="collection.html">Collection</a>
+        <a href="play-start.html">Start to play</a>
+        <button onclick="logoutUser()">Logout</button>
+    </div>
     <h1>Gamemode</h1>
     <button onclick="singleplayer()">Single player</button>
     <button onclick="multiplayer()">Multiplayer</button>
     <button onclick="startPlay()">Play</button>
-    <div id="singleplayer"></div>
+    <div id="singleplayerR"></div>
+    <div id="singleplayerL"></div>
     <div id="multiplayer"></div>
     <div id="cardDisplay"></div>
     <div id="displaySelectedCards"></div>
