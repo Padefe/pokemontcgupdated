@@ -1,17 +1,11 @@
-/* Reset some default styles */
-* {
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #222;
+    color: white;
+    text-align: center;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin: 0;
-    overflow: auto;  /* Hide overflow during animation */
 }
 
 /* Top navigation bar styling */
@@ -48,158 +42,110 @@ body {
     background-color: #c0392b;
 }
 
-/* Header styling */
-h1 {
-    text-align: center;
-    margin-top: 30px;
-    color: #333;
-}
-
-/* Booster pack container */
+/* Booster Pack Container */
 #pack-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
 }
 
-/* Styling for each booster pack item */
+/* Individual Booster Pack */
 .pack {
-    background-color: white;
-    padding: 20px;
+    background: #333;
+    padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease-in-out;
+    width: 180px;
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
 .pack:hover {
     transform: scale(1.05);
 }
 
+/* Booster Pack Image */
 .pack img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-/* Title styling for booster pack */
-.pack h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #333;
-}
-
-/* Owned quantity styling */
-.pack p {
-    margin-bottom: 15px;
-    color: #777;
-}
-
-/* Button styling for opening booster pack */
-.pack button {
-    padding: 10px;
-    background-color: #3498db;
-    color: white;
-    border: none;
     border-radius: 5px;
+    display: block;
+    margin: auto;
+}
+
+/* Booster Pack Name */
+.pack h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Owned Quantity */
+.pack p {
+    font-size: 14px;
+    color: #bbb;
+}
+
+/* Open Button */
+.pack button {
+    background: #ffcc00;
+    color: #222;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.2s ease-in-out;
 }
 
 .pack button:hover {
-    background-color: #2980b9;
+    background: #e6b800;
 }
 
-/* Canvas container styling */
-#boosterCanvasContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Styling for the canvas */
+/* Canvas for Booster Cards */
 #boosterCanvas {
-    display: block;
-    background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent overlay background */
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
 }
 
-/* Responsive styling for the canvas */
-@media (max-width: 600px) {
-    #boosterCanvas {
-        width: 90%;
-        height: 80%;
+/* Flip Animation for Cards */
+@keyframes flipCard {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(180deg);
     }
 }
 
-/* Card styling on the canvas */
-.card {
+/* Booster Card Styling */
+.booster-card {
     width: 150px;
     height: 220px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    position: absolute;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d;
 }
 
-/* Card image styling */
-.card img {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
+.booster-card.flipped {
+    transform: rotateY(180deg);
 }
 
-/* Card text styling */
-.card h3 {
-    margin: 10px 0 5px;
-    font-size: 18px;
-    color: #333;
-}
-
-.card p {
-    font-size: 14px;
-    color: #555;
-}
-
-/* Button styling */
-.card button {
-    background-color: #3498db;
+/* Logout Button */
+.logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
     color: white;
+    padding: 8px 12px;
     border: none;
-    padding: 8px 15px;
-    margin-top: 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
-.card button:hover {
-    background-color: #2980b9;
-}
-
-/* Responsive card styling for mobile */
-@media (max-width: 600px) {
-    .card {
-        width: 120px;
-        height: 180px;
-    }
-
-    .card h3 {
-        font-size: 16px;
-    }
-
-    .card p {
-        font-size: 12px;
-    }
+.logout-button:hover {
+    background: darkred;
 }
