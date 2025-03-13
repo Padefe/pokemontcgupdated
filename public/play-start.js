@@ -2,7 +2,25 @@ let selectedCards = [];
 let selectedRegion;
 let selectedLeader;
 
+let check;
+
 async function singleplayer() {
+    try {
+        const user_id = localStorage.getItem('userid');
+        if (!user_id) {
+            console.error('No user ID found, redirecting to login.');
+            window.location.href = '/'; // Redirect to login page
+            return;
+        }
+
+        const response = await fetch(`/api/trainer-cards?user_id=${user_id}`);
+        check = await response.json();
+        console.log(check[0]?.leader);
+    }
+    catch (error) {
+        console.error('Failed to fetch cards', error);
+    }
+
     const singleplayerR = document.getElementById('singleplayerR');
     singleplayerR.innerHTML = `
         <label for="region">Choose region:</label>
@@ -17,25 +35,39 @@ async function singleplayer() {
         selectedRegion = document.getElementById('region').value;
         console.log("Selected Region:", selectedRegion);
         const singleplayerL = document.getElementById('singleplayerL');
-        if (selectedRegion === "Kanto")
-            singleplayerL.innerHTML = `
+        if (selectedRegion === "Kanto") {
+            const gymLeadersWithAsterisk = [check[0]?.leader]; // Gym leaders that should have an asterisk
+            let optionsHTML = `
                 <label for="gymLeader">Choose gym leader:</label>
+                <p>* means you have beaten them before</p>
                 <select id="gymLeader" name="gymLeader">
-                    <option value="Brock">Brock</option>
-                    <option value="Misty">Misty</option>
-                    <option value="LtSurge">Lt. Surge</option>
-                    <option value="Erika">Erika</option>
-                    <option value="Koga">Koga</option>
-                    <option value="Sabrina">Sabrina</option>
-                    <option value="Blaine">Blaine</option>
-                    <option value="Giovanni">Giovanni</option>
-                    <option value="Koga">Lorelei</option>
-                    <option value="Sabrina">Bruno</option>
-                    <option value="Blaine">Agatha</option>
-                    <option value="Giovanni">Lance</option>
+            `;
+
+            const gymLeaders = [
+                "Brock", "Misty", "LtSurge", "Erika", "Koga", 
+                "Sabrina", "Blaine", "Giovanni", "Lorelei", 
+                "Bruno", "Agatha", "Lance"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
                 </select>
                 <button id="submit-gymLeader">Choose gym leader</button>
             `;
+            singleplayerL.innerHTML = optionsHTML;
+
+            // Add event listener to gym leader selection button
+            document.getElementById('submit-gymLeader').addEventListener('click', () => {
+                const selectedGymLeader = document.getElementById('gymLeader').value;
+                console.log("Selected Gym Leader:", selectedGymLeader);
+            });
+        }
         else if (selectedRegion === "Johto")
             singleplayerL.innerHTML = `
         <label for="gymLeader">Choose gym leader:</label>
