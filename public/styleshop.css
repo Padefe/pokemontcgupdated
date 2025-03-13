@@ -141,6 +141,12 @@ h1 {
 .booster-pack button:hover {
     background-color: #27ae60;
 }
+#top-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 @media (max-width: 600px) {
     .top.bar {
         display: flex;
@@ -150,5 +156,14 @@ h1 {
 
     .top.bar a {
         font-size: 15px;
+    }
+    .shop-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(134px, 1fr));
+        gap: 5px;
+        margin-top: 30px;
+    }
+    .shop-item, .booster-pack {
+        padding: 5px;
     }
 }
