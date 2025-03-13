@@ -1,6 +1,6 @@
 import { supabase } from '../config/supabase.js';
 
-export async function fetchTrainerReward(selectedTrainer, storedUserId) {
+export async function fetchTrainerReward(selectedT, user_id) {
     const trainerRewards = {
         // **Kanto**
         Brock: 1, Misty: 2, LtSurge: 3, Erika: 4, Koga: 5, Sabrina: 6, Blaine: 7, Giovanni: 8,
@@ -42,7 +42,7 @@ export async function fetchTrainerReward(selectedTrainer, storedUserId) {
     const { data: leaderData } = await supabase
         .from("Gymleader_Check")
         .select("leader")
-        .eq("user_id", storedUserId)
+        .eq("user_id", user_id)
         .single();
 
     let insertData = null;
@@ -50,12 +50,12 @@ export async function fetchTrainerReward(selectedTrainer, storedUserId) {
     if (!leaderData) {
         const { data } = await supabase
             .from("Gymleader_Check")
-            .insert([{ user_id: storedUserId, leader: selectedTrainer }])
+            .insert([{ user_id: user_id, leader: selectedT }])
             .select()
             .single();
 
         insertData = data;
     }
 
-    return { reward: trainerRewards[selectedTrainer] ?? 0, insertData };
+    return { reward: trainerRewards[selectedT] ?? 0, insertData };
 }

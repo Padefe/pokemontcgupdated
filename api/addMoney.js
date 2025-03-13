@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
     try {
         const userMoney = await fetchUserMoney(user_id);
-        const reward = await fetchTrainerReward(selectedT, storedUserId);
+        const reward = await fetchTrainerReward(selectedT, user_id);
 
         console.log(userMoney);
         console.log(reward);
