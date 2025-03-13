@@ -1,0 +1,74 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffcb05, #3b4cca); /* Pokémon Yellow & Blue */
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container */
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Input fields */
+input {
+    display: block;
+    width: 250px;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Buttons */
+button {
+    width: 130px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Login button */
+#loginbutton {
+    background-color: #ffcb05; /* Pokémon Yellow */
+    color: black;
+}
+
+#loginbutton:hover {
+    background-color: #e0b604;
+}
+
+/* Register button */
+#registerbutton {
+    background-color: #3b4cca; /* Pokémon Blue */
+    color: white;
+}
+
+#registerbutton:hover {
+    background-color: #2c3aa6;
+}
+
+/* Registration container */
+#reg-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    width: 300px;
+    min-height: 50px;
+}
