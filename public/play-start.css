@@ -70,7 +70,7 @@ button:hover {
 }
 
 /* Game Mode Containers */
-#singleplayerR, #singleplayerL, #multiplayer {
+#singleplayerR, #singleplayerL {
     margin: 20px auto;
     width: 80%;
     max-width: 500px;
@@ -78,6 +78,22 @@ button:hover {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#showSelectedCards
+{
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 100%;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 /* Dropdown Styling */
@@ -113,6 +129,14 @@ select {
     height: auto;
     border-radius: 10px;
 }
+.card-image
+{
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    border-radius: 10px;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

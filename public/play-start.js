@@ -100,28 +100,27 @@ function displayCards(cards) {
     });
 }
 
-// Function to toggle card selection
 function toggleCardSelection(cardId, image) {
     const cardElement = image.closest('.card');
-    const isSelected = cardElement.classList.contains('selected');
+    const isSelected = selectedCards.some(card => card.id === cardId); // Check if the card is already selected
 
     if (isSelected) {
         // Deselect the card
+        selectedCards = selectedCards.filter(card => card.id !== cardId); // Remove card from selection
         cardElement.classList.remove('selected');
         image.style.border = '';  // Reset border style
         console.log("Card deselected:", cardId);
-        selectedCards = selectedCards.filter(id => id !== cardId);  // Remove card from selection
     } else {
         // Check if the maximum number of selected cards (5) has been reached
         if (selectedCards.length >= 6) {
-            alert('You can only select up to 5 cards.');
+            alert('You can only select up to 6 cards.');
             return;
         }
         // Select the card
+        selectedCards.push({ id: cardId, src: image.src }); // Store both ID and image src
         cardElement.classList.add('selected');
         image.style.border = '2px solid green';  // Add border to indicate selection
         console.log("Card selected:", cardId);
-        selectedCards.push(cardId);  // Add card to selection
     }
 
     // Update the selected cards display
@@ -132,18 +131,17 @@ function toggleCardSelection(cardId, image) {
 function updateSelectedCardsDisplay() {
     const displayContainer = document.getElementById('showSelectedCards');
     displayContainer.innerHTML = '';  // Clear the previous content
-
     if (selectedCards.length === 0) {
         displayContainer.innerHTML = '<p>No cards selected.</p>';
         return;
     }
 
     // Display selected cards
-    selectedCards.forEach(cardId => {
+    selectedCards.forEach(card => {
         const selectedCardElement = document.createElement('div');
         selectedCardElement.classList.add('selected-card');
         selectedCardElement.innerHTML = `
-            <p>Card ID: ${img_url}</p>
+            <img src="${card.src}" alt="Card ${card.id}" class="card-image" data-id="${card.id}" />
         `;
         displayContainer.appendChild(selectedCardElement);
     });
