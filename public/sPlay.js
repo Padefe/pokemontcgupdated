@@ -38,6 +38,7 @@ async function startGame() {
 
 
     document.getElementById("playerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
+    document.getElementById("playerCardImage2").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
     document.getElementById("trainerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
 
     playerDeck = playerCards.filter(card => selectedCardIds.includes(card.card_id));
@@ -105,7 +106,7 @@ let isPlayerTurn = false;
 
 let winnerInfoDiv = document.getElementById("winnerInfo");
 
-
+let buttonFunction = false;
 
 
 function startRound() {
@@ -169,12 +170,14 @@ function startRound() {
     document.getElementById("playerCardWeight").style.color = "white";
 
     document.getElementById("playerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
+    document.getElementById("playerCardImage2").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
     document.getElementById("trainerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
 
     return new Promise(resolve => {
 
         if (isPlayerTurn) {
             document.getElementById("playerCardImage").src = playerFirstCard.img_url;
+            document.getElementById("playerCardImage2").src = playerFirstCard.img_url;
             document.getElementById("playerCardName").textContent = "Name: " + playerFirstCard.card_name;
             document.getElementById("playerCardDex").textContent = "Dex number: " + playerFirstCard.dex_number;
             document.getElementById("playerCardHP").textContent = "HP: " + playerFirstCard.card_hp;
@@ -275,6 +278,9 @@ function setBest() {
         const result = bestStatForPokemon(trainerFirstCard);
         bestStat = result.bestStat;
         value = result.value;
+        if (isPlayerTurn === true) {
+            buttonFunction = true;
+        }
         setTimeout(() => {
             if (!isPlayerTurn) {
                 displayStatsTrainer();
@@ -283,7 +289,6 @@ function setBest() {
         }, 2000);
     });
 }
-
 function displayStatsTrainer() {
     return new Promise(resolve => {
         if (!isPlayerTurn) {
@@ -310,6 +315,7 @@ function displayStatsTrainer() {
             }
 
             document.getElementById("playerCardImage").src = playerFirstCard.img_url;
+            document.getElementById("playerCardImage2").src = playerFirstCard.img_url;
             document.getElementById("playerCardName").textContent = "Name: " + playerFirstCard.card_name;
             document.getElementById("playerCardDex").textContent = "Dex number: " + playerFirstCard.dex_number;
             document.getElementById("playerCardHP").textContent = "HP: " + playerFirstCard.card_hp;
@@ -361,167 +367,172 @@ function displayStatsTrainer() {
         }, 0);
     });
 }
-
-
 function selectDex() {
     return new Promise(resolve => {
-        document.getElementById("playerCardDex").style.color = "#E1CC01";
+        if (buttonFunction) {
+            document.getElementById("playerCardDex").style.color = "#E1CC01";
 
-        document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
-        document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
-        document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
-        document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
-        document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
-        document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
-        document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
-        document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-        document.getElementById("trainerCardDex").style.color = "#E1CC01";
+            document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
+            document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
+            document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
+            document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
+            document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
+            document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
+            document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
+            document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
+            document.getElementById("trainerCardDex").style.color = "#E1CC01";
 
+            buttonFunction = false;
+            setTimeout(() => {
+                value = trainerFirstCard.dex_number;
+                playerStatValue = playerFirstCard.dex_number;
 
-
-        setTimeout(() => {
-            value = trainerFirstCard.dex_number;
-            playerStatValue = playerFirstCard.dex_number;
-
-            console.log(value);
-            console.log(playerStatValue);
-            displayWinner();
-            resolve();
-        }, 1000);
+                console.log(value);
+                console.log(playerStatValue);
+                displayWinner();
+                resolve();
+            }, 1000);
+        }
     });
 }
 function selectHP() {
     return new Promise(resolve => {
-        document.getElementById("playerCardHP").style.color = "#E1CC01";
+        if (buttonFunction) {
+            document.getElementById("playerCardHP").style.color = "#E1CC01";
 
-        document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
-        document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
-        document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
-        document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
-        document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
-        document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
-        document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
-        document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-        document.getElementById("trainerCardHP").style.color = "#E1CC01";
+            document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
+            document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
+            document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
+            document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
+            document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
+            document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
+            document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
+            document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
+            document.getElementById("trainerCardHP").style.color = "#E1CC01";
 
+            buttonFunction = false;
+            setTimeout(() => {
+                value = trainerFirstCard.card_hp;
+                playerStatValue = playerFirstCard.card_hp;
 
-
-        setTimeout(() => {
-            value = trainerFirstCard.card_hp;
-            playerStatValue = playerFirstCard.card_hp;
-
-            console.log(value);
-            console.log(playerStatValue);
-            displayWinner();
-            resolve();
-        }, 1000);
+                console.log(value);
+                console.log(playerStatValue);
+                displayWinner();
+                resolve();
+            }, 1000);
+        }
     });
 }
 function selectHeight() {
     return new Promise(resolve => {
-        document.getElementById("playerCardHeight").style.color = "#E1CC01";
+        if (buttonFunction) {
+            document.getElementById("playerCardHeight").style.color = "#E1CC01";
 
-        document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
-        document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
-        document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
-        document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
-        document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
-        document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
-        document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
-        document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-        document.getElementById("trainerCardHeight").style.color = "#E1CC01";
+            document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
+            document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
+            document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
+            document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
+            document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
+            document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
+            document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
+            document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
+            document.getElementById("trainerCardHeight").style.color = "#E1CC01";
 
+            buttonFunction = false;
+            setTimeout(() => {
+                value = trainerFirstCard.card_height;
+                playerStatValue = playerFirstCard.card_height;
 
-
-        setTimeout(() => {
-            value = trainerFirstCard.card_height;
-            playerStatValue = playerFirstCard.card_height;
-
-            console.log(value);
-            console.log(playerStatValue);
-            displayWinner();
-            resolve();
-        }, 1000);
+                console.log(value);
+                console.log(playerStatValue);
+                displayWinner();
+                resolve();
+            }, 1000);
+        }
     });
 }
 function selectWeight() {
     return new Promise(resolve => {
-        document.getElementById("playerCardWeight").style.color = "#E1CC01";
+        if (buttonFunction) {
+            document.getElementById("playerCardWeight").style.color = "#E1CC01";
 
-        document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
-        document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
-        document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
-        document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
-        document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
-        document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
-        document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
-        document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-        document.getElementById("trainerCardWeight").style.color = "#E1CC01";
+            document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
+            document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
+            document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
+            document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
+            document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
+            document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
+            document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
+            document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
+            document.getElementById("trainerCardWeight").style.color = "#E1CC01";
 
+            buttonFunction = false;
+            setTimeout(() => {
+                value = trainerFirstCard.card_weight;
+                playerStatValue = playerFirstCard.card_weight;
 
-
-        setTimeout(() => {
-            value = trainerFirstCard.card_weight;
-            playerStatValue = playerFirstCard.card_weight;
-
-            console.log(value);
-            console.log(playerStatValue);
-            displayWinner();
-            resolve();
-        }, 1000);
+                console.log(value);
+                console.log(playerStatValue);
+                displayWinner();
+                resolve();
+            }, 1000);
+        }
     });
 }
 function selectDamage() {
     return new Promise(resolve => {
-        document.getElementById("playerCardDamage").style.color = "#E1CC01";
+        if (buttonFunction) {
+            document.getElementById("playerCardDamage").style.color = "#E1CC01";
 
-        document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
-        document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
-        document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
-        document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
-        document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
-        document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
-        document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
-        document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-        document.getElementById("trainerCardDamage").style.color = "#E1CC01";
+            document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
+            document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
+            document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
+            document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
+            document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
+            document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
+            document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
+            document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
+            document.getElementById("trainerCardDamage").style.color = "#E1CC01";
 
+            buttonFunction = false;
+            setTimeout(() => {
+                value = trainerFirstCard.card_damage;
+                playerStatValue = playerFirstCard.card_damage;
 
-        setTimeout(() => {
-            value = trainerFirstCard.card_damage;
-            playerStatValue = playerFirstCard.card_damage;
-
-            console.log(value);
-            console.log(playerStatValue);
-            displayWinner();
-            resolve();
-        }, 1000);
+                console.log(value);
+                console.log(playerStatValue);
+                displayWinner();
+                resolve();
+            }, 1000);
+        }
     });
 }
 function selectSell() {
     return new Promise(resolve => {
-        document.getElementById("playerCardSell").style.color = "#E1CC01";
+        if (buttonFunction) {
+            document.getElementById("playerCardSell").style.color = "#E1CC01";
 
-        document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
-        document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
-        document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
-        document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
-        document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
-        document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
-        document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
-        document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-        document.getElementById("trainerCardSell").style.color = "#E1CC01";
+            document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
+            document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
+            document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
+            document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
+            document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
+            document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
+            document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
+            document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
+            document.getElementById("trainerCardSell").style.color = "#E1CC01";
 
+            buttonFunction = false;
+            setTimeout(() => {
+                value = trainerFirstCard.sell_price;
+                playerStatValue = playerFirstCard.sell_price;
 
-
-        setTimeout(() => {
-            value = trainerFirstCard.sell_price;
-            playerStatValue = playerFirstCard.sell_price;
-
-            console.log(value);
-            console.log(playerStatValue);
-            displayWinner();
-            resolve();
-        }, 1000);
+                console.log(value);
+                console.log(playerStatValue);
+                displayWinner();
+                resolve();
+            }, 1000);
+        }
     });
 }
 
@@ -603,16 +614,15 @@ function displayWinner() {
                 isPlayerTurn = false;
                 console.log("NAY");
             }
-            if(playerDeck.length === 0){
+            if (playerDeck.length === 0) {
                 loser();
             }
-            else if(trainerDeck.length === 0)
-            {
+            else if (trainerDeck.length === 0) {
                 winner();
             }
 
         }
-        setTimeout(resolve, 2000);
+        setTimeout(resolve, 0);
     });
 }
 
@@ -636,8 +646,7 @@ async function winner() {
     }
 }
 
-function loser()
-{
+function loser() {
     console.log("Game over!");
     alert("GAME OVER! No prize");
     window.location.href = "/play-start.html";
@@ -645,4 +654,11 @@ function loser()
 
 
 
-
+function toggleRules() {
+    const rulesOverlay = document.getElementById("rulesOverlay");
+    if (rulesOverlay.style.display === "flex") {
+        rulesOverlay.style.display = "none"; // Hide if it's visible
+    } else {
+        rulesOverlay.style.display = "flex"; // Show if it's hidden
+    }
+}

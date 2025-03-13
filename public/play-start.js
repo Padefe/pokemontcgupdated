@@ -158,9 +158,11 @@ function startPlay() {
             alert('You need to select exactly 6 cards.');
             return;
         }
-
+        console.log(selectedCards);
+        const selectedCardIds = selectedCards.map(card => card.id);
+        console.log(selectedCardIds);
         // Construct the URL with query parameters
-        const playPageUrl = `/sPlay.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCards.join(',')}`;
+        const playPageUrl = `/sPlay.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCardIds.join(',')}`;
 
         // Redirect to the play page with the URL parameters
         window.location.href = playPageUrl;
@@ -182,7 +184,6 @@ async function multiplayer() {
 
 }
 
-document.addEventListener('DOMContentLoaded', fetchCards);
 function logoutUser() {
     localStorage.removeItem("jwt_token"); // Remove token
     localStorage.removeItem("userid");

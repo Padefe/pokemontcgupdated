@@ -9,7 +9,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #228b22;
+    background-color: #222;
     padding: 20px;
     border-radius: 15px;
     border-color: brown;
@@ -28,12 +28,12 @@ body {
 }
 
 #player {
-    background-color: black;
+    background-color: #333;
     color: white;
 }
 
 #trainer {
-    background-color: black;
+    background-color: #333;
     color: white;
 }
 
@@ -42,7 +42,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #8C2257;
+    background-color: #3F8854;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -63,7 +63,7 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #8C2257;
+    background-color: #3F8854;
     padding: 10px;
     width: 280px;
     border-radius: 8px;
@@ -80,17 +80,18 @@ button {
     height: 35px;
     padding: 5px 15px;
     border: none;
-    background-color: darkblue;
+    background-color: #B33636;
     color: white;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
     transition: background 0.3s ease;
+    margin-bottom: 8px;
 }
 
 button:hover {
-    background-color: navy;
+    background-color: #B33636;
 }
 
 #nextRound
@@ -101,7 +102,7 @@ button:hover {
 
 .statButton {
     display: none;
-    background-color: green;
+    background-color: #B33636;
     margin-right: auto;
 }
 
@@ -115,4 +116,122 @@ p {
     text-align: center;
     font-size: 16px;
     font-weight: bold;
+}
+#playerCardImage2
+{
+    display: none;
+}
+/* Styling for the small "Rules" text */
+.rules-text {
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    background: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+    align-self: center;
+    width: 150px;
+}
+
+/* The overlay itself (hidden by default) */
+.rules-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* The rules box */
+.rules-content {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+ul
+{
+    padding: 0;
+}
+
+/* Show overlay when hovering */
+.rules-container:hover .rules-overlay {
+    display: flex;
+}
+#top-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.rules-container
+{
+    display: flex;
+    justify-self: right;
+    margin-left: auto;
+}
+
+@media (max-width: 600px) {
+    #gameArea
+    {
+        flex-direction: column;
+        gap: 20px;
+    }
+    img {
+        width: 110px;
+    }
+    .statRow, .statRowP {
+        width: 150px;
+        height: 25px;
+        padding: 0;
+    }
+    #playerCardStats, #trainerCardStat
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    #player, #trainer
+    {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 300px;
+    }
+    body
+    {
+        margin: 0;
+    }
+    p
+    {
+        margin: 0;
+        font-size: 11px;
+        align-items: center;
+        padding: 7px;
+    }
+    #playerCardImage2
+    {
+        display: block;
+    }
+    #playerCardImage
+    {
+        display: none;
+    }
+    .rules-content
+    {
+        width: 80%;
+    }
 }

@@ -9,48 +9,77 @@
 </head>
 
 <body>
+    <div id="top-container">
+        <div>
+            <h1>Pokemon Top Trumps</h1>
+        </div>
+        <div class="rules-container">
+            <p class="rules-text" onclick="toggleRules()">Rules</p>
+            <div class="rules-overlay" id="rulesOverlay">
+                <div class="rules-content">
+                    <h2>Game Rules</h2>
+                    <ul>
+                        <ul>Player and opponent starts with a deck of 6 cards each</ul>
+                        <br>
+                        <ul>Opponent always goes first</ul>
+                        <br>
+                        <ul>Opponent reveals their top card and chooese the best stat available on that card</ul>
+                        <br>
+                        <ul>Game then reveals the player's top card and compares the stats</ul>
+                        <br>
+                        <ul>If opponent wins, then they go again</ul>
+                        <br>
+                        <ul>If player wins, then in the next turn, player reveals their top card and selects their best stat by clicking the name of the stat</ul>
+                        <br>
+                        <ul>If its a tie then the game check wether any cards have weakness again the other card</ul>
+                        <br>
+                        <ul>If players card is weak against opponents card then they lose, and vice versa</ul>
+                        <br>
+                        <ul>If neither is weak then whoever chose a stat that round loses</ul>
+                        <br>
+                        <ul>At the end of each turn the cards that was just played is removed and suffled and placed at the bottom of winners deck</ul>
+                        <br>
+                        <ul>The game ends when one player has no more cards in their deck</ul>
+                    </ul>
+                    <button class="close-rules" onclick="toggleRules()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="gameArea">
         <div id="player">
+            <img id="playerCardImage" src="" alt="Player's Card">
             <div id="playerCardStats">
+                <div class="statRowP">
+                    <p id="RamainingCardsPlayer"></p>
+                </div>
                 <div class="statRowP">
                     <p id="playerCardName"></p> <!-- Player card's name -->
                 </div>
                 <div class="statRowP">
-                    <button id="pSelectDex" class="statButton" onclick="selectDex()">Select Dex</button>
-                    <p id="playerCardDex"></p>
+                    <p id="playerCardDex" onclick="selectDex()"></p>
                 </div>
                 <div class="statRowP">
-                    <button id="pSelectHp" class="statButton" onclick="selectHP()">Select HP</button>
-                    <p id="playerCardHP"></p>
+                    <p id="playerCardHP" onclick="selectHP()"></p>
                 </div>
                 <div class="statRowP">
-                    <button id="pSelectHeight" class="statButton" onclick="selectHeight()">Select Height</button>
-                    <p id="playerCardHeight"></p>
+                    <p id="playerCardHeight" onclick="selectHeight()"></p>
                 </div>
                 <div class="statRowP">
-                    <button id="pSelectWeight" class="statButton" onclick="selectWeight()">Select Weight</button>
-                    <p id="playerCardWeight"></p>
+                    <p id="playerCardWeight" onclick="selectWeight()"></p>
                 </div>
                 <div class="statRowP">
-                    <button id="pSelectDamage" class="statButton" onclick="selectDamage()">Select Damage</button>
-                    <p id="playerCardDamage"></p>
+                    <p id="playerCardDamage" onclick="selectDamage()"></p>
                 </div>
                 <div class="statRowP">
-                    <button id="pSelectSell" class="statButton" onclick="selectSell()">Select Sell</button>
-                    <p id="playerCardSell"></p>
-                </div>
-                <div class="statRowP">
-                    <p id="RamainingCardsPlayer"></p>
+                    <p id="playerCardSell" onclick="selectSell()"></p>
                 </div>
             </div>
-            <img id="playerCardImage" src="" alt="Player's Card">
-            
+            <img id="playerCardImage2" src="" alt="Player's Card">
         </div>
         <div id="centerContainer">
+            <button id="nextRound" onclick="startRound()">Next</button>
             <div id="winnerInfo"></div>
-            <div>
-                <button id="nextRound" onclick="startRound()">Next</button>
-            </div>
         </div>
         <div id="trainer">
             <img id="trainerCardImage" src="" alt="Trainer's Card">
