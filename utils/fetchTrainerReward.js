@@ -43,19 +43,18 @@ export async function fetchTrainerReward(selectedT, user_id) {
         .from("Gymleader_Check")
         .select("leader")
         .eq("user_id", user_id)
+        .eq("leader", selectedT)
         .single();
 
-    let insertData = null;
-
     if (!leaderData) {
-        const { data } = await supabase
+        console.log("Test");
+        const { error: insertError } = await supabase
             .from("Gymleader_Check")
-            .insert([{ user_id: user_id, leader: selectedT }])
-            .select()
-            .single();
-
-        insertData = data;
+            .insert([{ user_id: user_id, leader: selectedT }]);
+        if (insertError) {
+            console.log("Insert Error:", insertError); // Log the error to debug
+            return res.status(500).json({ success: false, message: 'Failed to insert leader' });
+        }
     }
-
-    return { reward: trainerRewards[selectedT] ?? 0, insertData };
+    return { reward: trainerRewards[selectedT] ?? 0 };
 }

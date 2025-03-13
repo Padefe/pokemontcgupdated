@@ -18,8 +18,8 @@ export default async function handler(req, res) {
 
         const moneyValue = userMoney?.balance ?? 0;
 
-        if (reward > 0) {  // Fixes the incorrect assignment
-            const newMoney = moneyValue + reward;
+        if (reward?.reward > 0) {  // Fixes the incorrect assignment
+            const newMoney = moneyValue + reward?.reward;
             console.log(newMoney);
             const { error: updateBalanceError } = await supabase
                 .from('User')

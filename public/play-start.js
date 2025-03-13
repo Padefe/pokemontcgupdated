@@ -15,7 +15,7 @@ async function singleplayer() {
 
         const response = await fetch(`/api/trainer-cards?user_id=${user_id}`);
         check = await response.json();
-        console.log(check[0]?.leader);
+        console.log();
     }
     catch (error) {
         console.error('Failed to fetch cards', error);
@@ -36,7 +36,7 @@ async function singleplayer() {
         console.log("Selected Region:", selectedRegion);
         const singleplayerL = document.getElementById('singleplayerL');
         if (selectedRegion === "Kanto") {
-            const gymLeadersWithAsterisk = [check[0]?.leader]; // Gym leaders that should have an asterisk
+            const gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
             let optionsHTML = `
                 <label for="gymLeader">Choose gym leader:</label>
                 <p>* means you have beaten them before</p>
