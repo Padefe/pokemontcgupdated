@@ -90,6 +90,10 @@ async function updateUserCards(boosterPackCards, userID) {
 }
 
 async function displayBoosterCards(boosterPackCards) {
+
+    const container = document.createElement('div');
+    container.id = 'canvasContainer';
+    document.body.appendChild(container);
     // Create the canvas dynamically
     const canvas = document.createElement('canvas');
     canvas.id = 'boosterCanvas';
@@ -102,6 +106,7 @@ async function displayBoosterCards(boosterPackCards) {
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.zIndex = '9999';
+    container.style.overflow = 'auto'; 
     canvas.style.pointerEvents = 'auto';
 
     const ctx = canvas.getContext('2d');

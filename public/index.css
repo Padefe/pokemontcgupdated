@@ -1,7 +1,7 @@
 /* General styles */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffcb05, #3b4cca); /* Pokémon Yellow & Blue */
+    background-color: darkgrey;
     color: white;
     text-align: center;
     display: flex;
@@ -64,11 +64,3 @@ button {
 }
 
 /* Registration container */
-#reg-container {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    width: 300px;
-    min-height: 50px;
-}
