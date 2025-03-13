@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { userID } = req.body;
         const { packID } = req.body;
+        const { buyPackAmount } = req.body;
 
         try {
             const userMoney = await fetchUserMoney(userID);
@@ -14,7 +15,19 @@ export default async function handler(req, res) {
 
             const selectedPack = boosterPacks.find(pack => pack.booster_id === packID);
 
-            const { price } = selectedPack;
+            let price;
+            
+            if (buyPackAmount === 10)
+            {
+                price = selectedPack.price * 10;
+            }
+            else
+            {
+                price = selectedPack.price;
+            }
+
+            console.log("amount of packs to buy: " + buyPackAmount);
+            console.log(price);
 
             const moneyValue = userMoney?.balance ?? 0;
 
@@ -51,7 +64,7 @@ export default async function handler(req, res) {
                 const { error: updateError } = await supabase
                     .from('User_Booster')
                     .update({
-                        booster_quantity: data.booster_quantity + 1
+                        booster_quantity: data.booster_quantity + buyPackAmount
                     })
                     .eq('user_id', userID)
                     .eq('booster_id', packID);

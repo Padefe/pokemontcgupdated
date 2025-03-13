@@ -26,6 +26,8 @@ function displayBooster(boosterPack) {
             <h3>${pack.booster_name}</h3>
             <p>$${pack.price}</p>
             <button onclick="Buy('${pack.booster_id}', '${pack.booster_name}')">Buy</button>
+            <button onclick="Buy10('${pack.booster_id}', '${pack.booster_name}')">Buy x10</button>
+
         `;
         shopContainer.appendChild(packElement);
     });
@@ -62,15 +64,18 @@ function displayMoney(money) {
 }
 document.addEventListener('DOMContentLoaded', fetchMoney);
 
+let buyPackAmount;
+
 async function Buy(packID, boosterName) {
     const userID = localStorage.getItem('userid');
+    buyPackAmount = 1;
     try {
         const response = await fetch('/api/buy-pack', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ packID, userID })
+            body: JSON.stringify({ packID, userID, buyPackAmount })
         });
         
         const data = await response.json();
@@ -84,6 +89,31 @@ async function Buy(packID, boosterName) {
         console.error('Failed to purchase pack:', error);
     }
 }
+
+async function Buy10(packID, boosterName) {
+    const userID = localStorage.getItem('userid');
+    buyPackAmount = 10;
+    try {
+        const response = await fetch('/api/buy-pack', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ packID, userID, buyPackAmount })
+        });
+        
+        const data = await response.json();
+        if (response.status === 200) {
+            alert(`10x ${boosterName} bought`);
+            fetchMoney();
+        }
+    }
+    catch (error)
+    {
+        console.error('Failed to purchase pack:', error);
+    }
+}
+
 function logoutUser() {
     localStorage.removeItem("jwt_token"); // Remove token
     localStorage.removeItem("userid");

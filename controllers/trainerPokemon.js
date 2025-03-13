@@ -129,14 +129,31 @@ export async function trainerPokemon(selectedT) {
     }
     else if (selectedT === "Falkner") {
         return [
-
+"9780fc8a-47ba-4840-8905-e8d7f75d9062",
+"4ceaa129-f103-4d10-b6b3-5ad24ea639c1",
+"9dbdbde1-1d6e-4051-b635-b0cde0774a0c",
+"5c2d10a2-2963-41f6-bafe-82e86d1a2433",
+"3543016a-61b1-44bb-a4ec-5a3362bee267",
+"9e4ba69e-9eb8-4045-9ec1-37ce6caacd18",
         ];
     } else if (selectedT === "Bugsy") {
         return [
+"f4415663-47ce-443b-beb5-af24f3d71c19",
+"3484ab3b-c125-4453-b1e6-9f1ef7b57ef5",
+"84aaf113-954f-4a9f-a1bf-11dd21c2c533",
+"9f14c30b-4dba-43ca-8b88-602376fecd5c",
+"654ee45a-494b-4d40-b40e-e038d162ffef",
+"528340e3-9678-4540-8ed7-5142151378b8",
 
         ];
     } else if (selectedT === "Whitney") {
         return [
+"2b83b2db-a561-4ff2-b0a8-e70fd3c8bee8",
+"d2afe510-8c26-4bb9-b1fe-5574767a5ec1",
+"ba063059-c5e1-4d1c-a4ce-4b80d74da7db",
+"b541a745-7fa6-4d1b-8210-157761351514",
+"b9dc0c06-99ec-4de2-9123-2d74bc969b0c",
+"85c83ba5-3830-4795-923d-8fbcec779bc9",
 
         ];
     } else if (selectedT === "Morty") {
@@ -241,7 +258,7 @@ export async function trainerPokemon(selectedT) {
         ];
     } else if (selectedT === "Cynthia") {
         return [
-            
+
         ];
     }
     else {

@@ -154,8 +154,8 @@ async function displayBoosterCards(boosterPackCards) {
             return { x: canvas.width / 2 - cardWidth / 2, y: 100 + index * (cardHeight + spacing) };
         }
         return { 
-            x: (canvas.width - (Math.min(4, boosterPackCards.length) * (cardWidth + spacing))) / 2 + (index % 4) * (cardWidth + spacing), 
-            y: 150 + Math.floor(index / 4) * (cardHeight + spacing) 
+            x: (canvas.width - (Math.min(5, boosterPackCards.length) * (cardWidth + spacing))) / 2 + (index % 5) * (cardWidth + spacing), 
+            y: 150 + Math.floor(index / 5) * (cardHeight + spacing) 
         };
     }
 
