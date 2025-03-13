@@ -38,7 +38,6 @@ async function startGame() {
 
 
     document.getElementById("playerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
-    document.getElementById("playerCardImage2").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
     document.getElementById("trainerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
 
     playerDeck = playerCards.filter(card => selectedCardIds.includes(card.card_id));
@@ -170,14 +169,14 @@ function startRound() {
     document.getElementById("playerCardWeight").style.color = "white";
 
     document.getElementById("playerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
-    document.getElementById("playerCardImage2").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
     document.getElementById("trainerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
 
     return new Promise(resolve => {
 
         if (isPlayerTurn) {
+            document.getElementById("playerTurn").textContent = "Player's turn"
+            document.getElementById("trainerTurn").textContent = ""
             document.getElementById("playerCardImage").src = playerFirstCard.img_url;
-            document.getElementById("playerCardImage2").src = playerFirstCard.img_url;
             document.getElementById("playerCardName").textContent = "Name: " + playerFirstCard.card_name;
             document.getElementById("playerCardDex").textContent = "Dex number: " + playerFirstCard.dex_number;
             document.getElementById("playerCardHP").textContent = "HP: " + playerFirstCard.card_hp;
@@ -186,6 +185,8 @@ function startRound() {
             document.getElementById("playerCardDamage").textContent = "Damage: " + playerFirstCard.card_damage;
             document.getElementById("playerCardSell").textContent = "Sell Value: $" + playerFirstCard.sell_price;
         } else {
+            document.getElementById("trainerTurn").textContent = "Trainer's turn"
+            document.getElementById("playerTurn").textContent = ""
             document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
             document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
             document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
@@ -315,7 +316,6 @@ function displayStatsTrainer() {
             }
 
             document.getElementById("playerCardImage").src = playerFirstCard.img_url;
-            document.getElementById("playerCardImage2").src = playerFirstCard.img_url;
             document.getElementById("playerCardName").textContent = "Name: " + playerFirstCard.card_name;
             document.getElementById("playerCardDex").textContent = "Dex number: " + playerFirstCard.dex_number;
             document.getElementById("playerCardHP").textContent = "HP: " + playerFirstCard.card_hp;

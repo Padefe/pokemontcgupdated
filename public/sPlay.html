@@ -29,7 +29,8 @@
                         <br>
                         <ul>If opponent wins, then they go again</ul>
                         <br>
-                        <ul>If player wins, then in the next turn, player reveals their top card and selects their best stat by clicking the name of the stat</ul>
+                        <ul>If player wins, then in the next turn, player reveals their top card and selects their best
+                            stat by clicking the name of the stat</ul>
                         <br>
                         <ul>If its a tie then the game check wether any cards have weakness again the other card</ul>
                         <br>
@@ -37,7 +38,8 @@
                         <br>
                         <ul>If neither is weak then whoever chose a stat that round loses</ul>
                         <br>
-                        <ul>At the end of each turn the cards that was just played is removed and suffled and placed at the bottom of winners deck</ul>
+                        <ul>At the end of each turn the cards that was just played is removed and suffled and placed at
+                            the bottom of winners deck</ul>
                         <br>
                         <ul>The game ends when one player has no more cards in their deck</ul>
                     </ul>
@@ -48,7 +50,10 @@
     </div>
     <div id="gameArea">
         <div id="player">
-            <img id="playerCardImage" src="" alt="Player's Card">
+            <div class="turnImage">
+                <h4 id="playerTurn"></h4>
+                <img id="playerCardImage" src="" alt="Player's Card">
+            </div>
             <div id="playerCardStats">
                 <div class="statRowP">
                     <p id="RamainingCardsPlayer"></p>
@@ -75,14 +80,16 @@
                     <p id="playerCardSell" onclick="selectSell()"></p>
                 </div>
             </div>
-            <img id="playerCardImage2" src="" alt="Player's Card">
         </div>
         <div id="centerContainer">
             <button id="nextRound" onclick="startRound()">Next</button>
             <div id="winnerInfo"></div>
         </div>
         <div id="trainer">
-            <img id="trainerCardImage" src="" alt="Trainer's Card">
+            <div class="turnImage">
+                <h4 id="trainerTurn"></h4>
+                <img id="trainerCardImage" src="" alt="Trainer's Card">
+            </div>
             <div id="trainerCardStats">
                 <div class="statRow">
                     <p id="RamainingCardsTrainer"></p>
