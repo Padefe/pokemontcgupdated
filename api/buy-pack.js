@@ -76,7 +76,7 @@ export default async function handler(req, res) {
                 // Row does not exist, so insert new one
                 const { error: insertError } = await supabase
                     .from('User_Booster')
-                    .insert([{ user_id: userID, booster_id: packID, booster_quantity: 1 }]);
+                    .insert([{ user_id: userID, booster_id: packID, booster_quantity: buyPackAmount }]);
 
                 if (insertError) {
                     return res.status(500).json({ success: false, message: 'Failed to insert new booster pack' });
