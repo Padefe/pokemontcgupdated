@@ -116,8 +116,8 @@ async function displayBoosterCards(boosterPackCards) {
     let cardHeight;
     if(isMobile)
     {
-        cardWidth = 150;
-        cardHeight = 210;
+        cardWidth = 140;
+        cardHeight = 200;
     }
     else
     {
@@ -140,9 +140,19 @@ async function displayBoosterCards(boosterPackCards) {
         });
     }
 
+    let yHeight;
+    if(isMobile)
+    {
+        yHeight = 10;
+    }
+    else
+    {
+        yHeight = 2;
+    }
+
     function drawCard(card, cardImg, x, y, flip) {
         ctx.save();
-        ctx.translate(x + cardWidth / 2, y + cardHeight / 2); // Move to center
+        ctx.translate(x + cardWidth / 2, y + cardHeight / yHeight); // Move to center
         ctx.scale(flip < 0.5 ? 1 - flip * 2 : flip * 2 - 1, 1); // Flip effect
 
         if (flip < 0.5) {

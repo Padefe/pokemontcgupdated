@@ -13,6 +13,7 @@
     align-items: center;
     background-color: #333;
     padding: 10px 20px;
+    overflow: auto;
 }
 
 .top.bar a {
@@ -70,7 +71,8 @@ button:hover {
 }
 
 /* Game Mode Containers */
-#singleplayerR, #singleplayerL {
+#singleplayerR,
+#singleplayerL {
     margin: 20px auto;
     width: 80%;
     max-width: 500px;
@@ -80,8 +82,7 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#showSelectedCards
-{
+#showSelectedCards {
     display: flex;
     flex-direction: row;
     margin: 20px auto;
@@ -129,8 +130,8 @@ select {
     height: auto;
     border-radius: 10px;
 }
-.card-image
-{
+
+.card-image {
     width: 100%;
     max-width: 180px;
     height: auto;
@@ -139,12 +140,27 @@ select {
 
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .top-bar {
-        flex-direction: column;
+@media (max-width: 600px) {
+    .top.bar {
+        display: flex;
+        flex-direction: row;
+        padding: 5px 10px;
     }
-    
+
+    .top.bar a {
+        font-size: 15px;
+    }
+
+    p {
+        font-size: small;
+    }
+
     .card {
-        width: 90%;
+        padding: 5px;
+        width: 160px;
+    }
+
+    .card-image {
+        max-width: 90px;
     }
 }
