@@ -106,14 +106,25 @@ async function displayBoosterCards(boosterPackCards) {
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.zIndex = '9999';
-    container.style.overflow = 'auto'; 
     canvas.style.pointerEvents = 'auto';
 
     const ctx = canvas.getContext('2d');
 
     // Card properties
-    const cardWidth = 200;
-    const cardHeight = 270;
+    const isMobile = window.innerWidth <= 600;
+    let cardWidth;
+    let cardHeight;
+    if(isMobile)
+    {
+        cardWidth = 150;
+        cardHeight = 210;
+    }
+    else
+    {
+        cardWidth = 200;
+        cardHeight = 260;
+    }
+
     const spacing = 20;
     const cardImages = await Promise.all(boosterPackCards.map(card => loadImage(card.img_url)));
 
@@ -154,9 +165,11 @@ async function displayBoosterCards(boosterPackCards) {
     }
 
     function getCardPosition(index) {
-        const isMobile = window.innerWidth <= 600;
         if (isMobile) {
-            return { x: canvas.width / 2 - cardWidth / 2, y: 100 + index * (cardHeight + spacing) };
+            return { 
+                x: (canvas.width - (Math.min(2, boosterPackCards.length) * (cardWidth + spacing))) / 2 + (index % 2) * (cardWidth + spacing), 
+                y: 150 + Math.floor(index / 2) * (cardHeight + spacing) 
+            };
         }
         return { 
             x: (canvas.width - (Math.min(5, boosterPackCards.length) * (cardWidth + spacing))) / 2 + (index % 5) * (cardWidth + spacing), 
