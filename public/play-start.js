@@ -130,7 +130,7 @@ function toggleCardSelection(cardId, image) {
 
 // Function to update the display of selected cards
 function updateSelectedCardsDisplay() {
-    const displayContainer = document.getElementById('displaySelectedCards');
+    const displayContainer = document.getElementById('showSelectedCards');
     displayContainer.innerHTML = '';  // Clear the previous content
 
     if (selectedCards.length === 0) {
@@ -143,7 +143,7 @@ function updateSelectedCardsDisplay() {
         const selectedCardElement = document.createElement('div');
         selectedCardElement.classList.add('selected-card');
         selectedCardElement.innerHTML = `
-            <p>Card ID: ${cardId}</p>
+            <p>Card ID: ${img_url}</p>
         `;
         displayContainer.appendChild(selectedCardElement);
     });
