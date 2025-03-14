@@ -28,7 +28,7 @@ export async function registerUser(email, regword, regname) {
                 user_email: email, 
                 password: hashedPassword,
                 user_name: regname,
-                balance: 100
+                balance: 19.75
             }
         ]);
 
