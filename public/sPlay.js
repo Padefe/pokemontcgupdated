@@ -592,8 +592,6 @@ function displayWinner() {
 }
 
 async function winner() {
-    if (button.disabled) return; // Prevent double execution
-    button.disabled = true; // Disable button to prevent multiple clicks
     const response_user = await fetch('/api/addMoney', {
         method: 'POST', // This should be POST
         headers: {
