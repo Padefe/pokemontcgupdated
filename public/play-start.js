@@ -341,7 +341,6 @@ function displayCards(cards) {
         cardElement.innerHTML = `
             <p>Name: You have ${card.quantity} ${card.Card.card_name} cards</p>
             <img src="${card.Card.img_url}" alt="${card.Card.card_name}" class="card-image" data-id="${card.Card.card_id}" />
-            <p>Dex Number: ${card.Card.dex_number}</p>
             <p>Price: $${card.Card.sell_price}</p>
             <p>HP: ${card.Card.card_hp}</p>
             <p>Height: ${card.Card.card_height} cm</p>
@@ -372,7 +371,7 @@ function toggleCardSelection(cardId, image) {
         image.style.border = '';  // Reset border style
         console.log("Card deselected:", cardId);
     } else {
-        // Check if the maximum number of selected cards (5) has been reached
+        // Check if the maximum number of selected cards (6) has been reached
         if (selectedCards.length >= 6) {
             alert('You can only select up to 6 cards.');
             return;
@@ -415,10 +414,6 @@ function startPlay() {
     else {
         const user_id = localStorage.getItem('userid');
 
-        if (selectedCards.length !== 6) {
-            alert('You need to select exactly 6 cards.');
-            return;
-        }
         console.log(selectedCards);
         const selectedCardIds = selectedCards.map(card => card.id);
         console.log(selectedCardIds);
