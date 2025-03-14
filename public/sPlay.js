@@ -139,34 +139,37 @@ function startRound() {
     document.getElementById("RamainingCardsTrainer").textContent = "They have: " + trainerDeck.length + " in their deck";
 
     document.getElementById("playerCardName").textContent = "";
-    document.getElementById("playerCardDex").textContent = "";
     document.getElementById("playerCardHP").textContent = "";
+    document.getElementById("playerCardDex").textContent = "";
     document.getElementById("playerCardWeight").textContent = "";
     document.getElementById("playerCardHeight").textContent = "";
     document.getElementById("playerCardDamage").textContent = "";
     document.getElementById("playerCardSell").textContent = "";
 
     document.getElementById("trainerCardName").textContent = "";
-    document.getElementById("trainerCardDex").textContent = "";
     document.getElementById("trainerCardHP").textContent = "";
+    document.getElementById("trainerCardDex").textContent = "";
     document.getElementById("trainerCardWeight").textContent = "";
     document.getElementById("trainerCardHeight").textContent = "";
     document.getElementById("trainerCardDamage").textContent = "";
     document.getElementById("trainerCardSell").textContent = "";
 
-    document.getElementById("trainerCardSell").style.color = "white";
-    document.getElementById("trainerCardDex").style.color = "white";
-    document.getElementById("trainerCardHP").style.color = "white";
-    document.getElementById("trainerCardHeight").style.color = "white";
-    document.getElementById("trainerCardDamage").style.color = "white";
-    document.getElementById("trainerCardWeight").style.color = "white";
+    document.getElementById("tstats").style.backgroundColor = "#3F8854";
+    document.getElementById("tstathp").style.backgroundColor = "#3F8854";
+    document.getElementById("tstath").style.backgroundColor = "#3F8854";
+    document.getElementById("tstatd").style.backgroundColor = "#3F8854";
+    document.getElementById("tstatw").style.backgroundColor = "#3F8854";
 
-    document.getElementById("playerCardSell").style.color = "white";
-    document.getElementById("playerCardDex").style.color = "white";
-    document.getElementById("playerCardHP").style.color = "white";
-    document.getElementById("playerCardHeight").style.color = "white";
-    document.getElementById("playerCardDamage").style.color = "white";
-    document.getElementById("playerCardWeight").style.color = "white";
+    document.getElementById("pstats").style.backgroundColor = "#3F8854";
+    document.getElementById("pstathp").style.backgroundColor = "#3F8854";
+    document.getElementById("pstath").style.backgroundColor = "#3F8854";
+    document.getElementById("pstatd").style.backgroundColor = "#3F8854";
+    document.getElementById("pstatw").style.backgroundColor = "#3F8854";
+
+    document.getElementById("trainerTurn").style.color = "#333";
+    document.getElementById("playerTurn").style.color = "#333";
+    document.getElementById("trainerTurn").textContent = "Trainer's turn"
+    document.getElementById("playerTurn").textContent = "Player's turn"
 
     document.getElementById("playerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
     document.getElementById("trainerCardImage").src = "https://raw.githubusercontent.com/Padefe/pokemontcgupdated/refs/heads/main/public/images/backface.webp";
@@ -174,8 +177,7 @@ function startRound() {
     return new Promise(resolve => {
 
         if (isPlayerTurn) {
-            document.getElementById("playerTurn").textContent = "Player's turn"
-            document.getElementById("trainerTurn").textContent = ""
+            document.getElementById("playerTurn").style.color = "white";
             document.getElementById("playerCardImage").src = playerFirstCard.img_url;
             document.getElementById("playerCardName").textContent = "Name: " + playerFirstCard.card_name;
             document.getElementById("playerCardDex").textContent = "Dex number: " + playerFirstCard.dex_number;
@@ -185,8 +187,7 @@ function startRound() {
             document.getElementById("playerCardDamage").textContent = "Damage: " + playerFirstCard.card_damage;
             document.getElementById("playerCardSell").textContent = "Sell Value: $" + playerFirstCard.sell_price;
         } else {
-            document.getElementById("trainerTurn").textContent = "Trainer's turn"
-            document.getElementById("playerTurn").textContent = ""
+            document.getElementById("trainerTurn").style.color = "white";
             document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
             document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
             document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
@@ -289,22 +290,19 @@ function displayStatsTrainer() {
 
             switch (bestStat) {
                 case 'sell_price':
-                    document.getElementById("trainerCardSell").style.color = "#E1CC01";
-                    break;
-                case 'dex_number':
-                    document.getElementById("trainerCardDex").style.color = "#E1CC01";
+                    document.getElementById("tstats").style.backgroundColor = "#B33636";
                     break;
                 case 'hp':
-                    document.getElementById("trainerCardHP").style.color = "#E1CC01";
+                    document.getElementById("tstathp").style.backgroundColor = "#B33636";
                     break;
                 case 'height':
-                    document.getElementById("trainerCardHeight").style.color = "#E1CC01";
+                    document.getElementById("tstath").style.backgroundColor = "#B33636";
                     break;
                 case 'damage':
-                    document.getElementById("trainerCardDamage").style.color = "#E1CC01";
+                    document.getElementById("tstatd").style.backgroundColor = "#B33636";
                     break;
                 case 'weight':
-                    document.getElementById("trainerCardWeight").style.color = "#E1CC01";
+                    document.getElementById("tstatw").style.backgroundColor = "#B33636";
                     break;
             }
 
@@ -322,22 +320,19 @@ function displayStatsTrainer() {
 
             switch (bestStat) {
                 case 'sell_price':
-                    document.getElementById("playerCardSell").style.color = "#E1CC01";
-                    break;
-                case 'dex_number':
-                    document.getElementById("playerCardDex").style.color = "#E1CC01";
+                    document.getElementById("pstats").style.backgroundColor = "#B33636";
                     break;
                 case 'hp':
-                    document.getElementById("playerCardHP").style.color = "#E1CC01";
+                    document.getElementById("pstathp").style.backgroundColor = "#B33636";
                     break;
                 case 'height':
-                    document.getElementById("playerCardHeight").style.color = "#E1CC01";
+                    document.getElementById("pstath").style.backgroundColor = "#B33636";
                     break;
                 case 'damage':
-                    document.getElementById("playerCardDamage").style.color = "#E1CC01";
+                    document.getElementById("pstatd").style.backgroundColor = "#B33636";
                     break;
                 case 'weight':
-                    document.getElementById("playerCardWeight").style.color = "#E1CC01";
+                    document.getElementById("pstatw").style.backgroundColor = "#B33636";
                     break;
             }
 
@@ -363,7 +358,7 @@ function displayStatsTrainer() {
 function selectHP() {
     return new Promise(resolve => {
         if (buttonFunction) {
-            document.getElementById("playerCardHP").style.color = "#E1CC01";
+            document.getElementById("pstathp").style.backgroundColor = "#B33636";
 
             document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
             document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
@@ -373,7 +368,7 @@ function selectHP() {
             document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
             document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
             document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-            document.getElementById("trainerCardHP").style.color = "#E1CC01";
+            document.getElementById("tstathp").style.backgroundColor = "#B33636";
 
             buttonFunction = false;
             setTimeout(() => {
@@ -391,7 +386,7 @@ function selectHP() {
 function selectHeight() {
     return new Promise(resolve => {
         if (buttonFunction) {
-            document.getElementById("playerCardHeight").style.color = "#E1CC01";
+            document.getElementById("pstath").style.backgroundColor = "#B33636";
 
             document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
             document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
@@ -401,7 +396,7 @@ function selectHeight() {
             document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
             document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
             document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-            document.getElementById("trainerCardHeight").style.color = "#E1CC01";
+            document.getElementById("tstath").style.backgroundColor = "#B33636";
 
             buttonFunction = false;
             setTimeout(() => {
@@ -419,7 +414,7 @@ function selectHeight() {
 function selectWeight() {
     return new Promise(resolve => {
         if (buttonFunction) {
-            document.getElementById("playerCardWeight").style.color = "#E1CC01";
+            document.getElementById("pstatw").style.backgroundColor = "#B33636";
 
             document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
             document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
@@ -429,7 +424,7 @@ function selectWeight() {
             document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
             document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
             document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-            document.getElementById("trainerCardWeight").style.color = "#E1CC01";
+            document.getElementById("tstatw").style.backgroundColor = "#B33636";
 
             buttonFunction = false;
             setTimeout(() => {
@@ -447,7 +442,7 @@ function selectWeight() {
 function selectDamage() {
     return new Promise(resolve => {
         if (buttonFunction) {
-            document.getElementById("playerCardDamage").style.color = "#E1CC01";
+            document.getElementById("pstatd").style.backgroundColor = "#B33636";
 
             document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
             document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
@@ -457,7 +452,7 @@ function selectDamage() {
             document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
             document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
             document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-            document.getElementById("trainerCardDamage").style.color = "#E1CC01";
+            document.getElementById("tstatd").style.backgroundColor = "#B33636";
 
             buttonFunction = false;
             setTimeout(() => {
@@ -472,7 +467,7 @@ function selectDamage() {
 function selectSell() {
     return new Promise(resolve => {
         if (buttonFunction) {
-            document.getElementById("playerCardSell").style.color = "#E1CC01";
+            document.getElementById("pstats").style.backgroundColor = "#B33636";
 
             document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
             document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
@@ -482,7 +477,7 @@ function selectSell() {
             document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
             document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
             document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-            document.getElementById("trainerCardSell").style.color = "#E1CC01";
+            document.getElementById("tstats").style.backgroundColor = "#B33636";
 
             buttonFunction = false;
             setTimeout(() => {
