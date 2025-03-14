@@ -3,44 +3,44 @@ import { supabase } from '../config/supabase.js';
 export async function fetchTrainerReward(selectedT, user_id) {
     const trainerRewards = {
         // **KantoOK**
-        Brock: 1, Misty: 1, LtSurge: 1, Erika: 1, Koga: 1, Sabrina: 1, Blaine: 1, Giovanni: 1,
-        Lorelei: 1, Bruno: 1, Agatha: 1, Lance: 1, Gary: 1,
+        Brock: 1, Misty: 2, LtSurge: 3, Erika: 4, Koga: 5, Sabrina: 6, Blaine: 7, Giovanni: 8,
+        Lorelei: 15, Bruno: 15, Agatha: 15, Lance: 15, Gary: 40,
 
         // **JohtoOK**
-        Falkner: 1, Bugsy: 1, Whitney: 1, Morty: 1, Chuck: 1, Jasmine: 1, Pryce: 1, Clair: 1,
-        Will: 1, KogaE4: 1, BrunoE4: 1, Karen: 1, LanceChampion: 1, LtSurgeJ: 1, SabrinaJ: 1,
-        ErikaJ: 1, Janine: 1, MistyJ: 1, BrockJ: 1, BlaineJ: 1, Blue: 1, Red: 1, 
+        Falkner: 1, Bugsy: 1.5, Whitney: 2, Morty: 2.5, Chuck: 3, Jasmine: 3.5, Pryce: 4, Clair: 5,
+        Will: 8, KogaE4: 8, BrunoE4: 8, Karen: 8, LanceChampion: 12, LtSurgeJ: 5.5, SabrinaJ: 6,
+        ErikaJ: 6.5, Janine: 7, MistyJ: 7.5, BrockJ: 8, BlaineJ: 9, Blue: 10, Red: 16, 
 
         // **HoennOK**
-        Roxanne: 1, Brawly: 1, Wattson: 1, Flannery: 1, Norman: 1, Winona: 1, TateAndLiza: 1, Wallace: 1,
-        Sidney: 1, Phoebe: 1, Glacia: 1, Drake: 1, Steven: 1,
+        Roxanne: 1, Brawly: 1.5, Wattson: 2, Flannery: 2.5, Norman: 3, Winona: 3.5, TateAndLiza: 4, Wallace: 5,
+        Sidney: 11, Phoebe: 11, Glacia: 11, Drake: 11, Steven: 25,
 
         // **SinnohOK**
-        Roark: 1, Gardenia: 1, Maylene: 1, CrasherWake: 1, Fantina: 1, Byron: 1, Candice: 1, Volkner: 1,
-        Aaron: 1, Bertha: 1, Flint: 1, Lucian: 1, Cynthia: 1,
+        Roark: 1, Gardenia: 1.25, Maylene: 1.5, CrasherWake: 1.75, Fantina: 2, Byron: 2.33, Candice: 2.66, Volkner: 3,
+        Aaron: 9, Bertha: 9, Flint: 9, Lucian: 9, Cynthia: 18,
 
         // **UnovaOK**
-        CilanChiliCress: 1, Lenora: 1, Burgh: 1, Elesa: 1, Clay: 1, Skyla: 1, Brycen: 1, Drayden: 1,
-        Shauntal: 1, Grimsley: 1, Caitlin: 1, Marshal: 1, Shauntal2: 1, Grimsley2: 1, Caitlin2: 1,
-        Marshal2: 1, Alder: 1,
+        CilanChiliCress: 1.12, Lenora: 1.25, Burgh: 1.37, Elesa: 1.5, Clay: 1.62, Skyla: 1.75, Brycen: 1.87, Drayden: 3,
+        Shauntal: 3, Grimsley: 3, Caitlin: 3, Marshal: 3, Shauntal2: 7, Grimsley2: 7, Caitlin2: 7,
+        Marshal2: 7, Alder: 16,
 
         // **KalosOK**
-        Viola: 1, Grant: 1, Korrina: 1, Ramos: 1, Clemont: 1, Valerie: 1, Olympia: 1, Wulfric: 1,
-        Malva: 1, Siebold: 1, Wikstrom: 1, Drasna: 1, Diantha: 1,
+        Viola: 1, Grant: 1.12, Korrina: 1.25, Ramos: 1.37, Clemont: 1.5, Valerie: 1.62, Olympia: 1.75, Wulfric: 1.87,
+        Malva: 5, Siebold: 5, Wikstrom: 5, Drasna: 5, Diantha: 18,
 
         // **Alola (Trial Captains & Kahunas)OK**
-        Hala: 1, Olivia: 1, Nanu: 1, Hapu: 1, HalaE4: 1, OliviaE4: 1, Acerola: 1, Kahili: 1,
-        Kukui: 1, Hau: 1, Sophocles: 1, Ryuki: 1, Gladion: 1, Gladion: 1, Molayne: 1, Plumeria: 1,
-        HapuChallenger: 1, Faba: 1, Tristan: 1, 
+        Hala: 1, Olivia: 1.25, Nanu: 1.5, Hapu: 1.65, HalaE4: 4, OliviaE4: 4, Acerola: 4, Kahili: 4,
+        Kukui: 10, Hau: 5, Sophocles: 5, Ryuki: 5, Gladion: 5, Gladion: 5, Molayne: 5, Plumeria: 5,
+        HapuChallenger: 5, Faba: 5, Tristan: 5, 
 
         // **GalarOK**
-        Milo: 1, Nessa: 1, Kabu: 1, Bea: 1, Allister: 1, Opal: 1, Gordie: 1, Melony: 1,Piers: 1, 
-        Raihan: 1, Marnie: 1, Hop: 1, Bede: 1, NessaOpponent: 1, BeaOpponent: 1, AllisterOpponent: 1,
-        RaihanOpponent: 1, Leon: 1,
+        Milo: 1, Nessa: 1.12, Kabu: 1.25, Bea: 1.37, Allister: 1.5, Opal: 1.62, Gordie: 1.75, Melony: 1.87, Piers: 2.5, 
+        Raihan: 2.5, Marnie: 2.5, Hop: 2, Bede: 2, NessaOpponent: 4, BeaOpponent: 4, AllisterOpponent: 4,
+        RaihanOpponent: 4, Leon: 9,
 
         // **PaldeaOK**
-        Katy: 1, Brassius: 1, Iono: 1, Kofu: 1, Larry: 1, Ryme: 1, Tulip: 1, Grusha: 1,
-        Rika: 1, Poppy: 1, LarryE4: 1, Hassel: 1, Geeta: 1,
+        Katy: 1, Brassius: 1.12, Iono: 1.25, Kofu: 1.37, Larry: 1.5, Ryme: 1.62, Tulip: 1.75, Grusha: 1.87,
+        Rika: 4, Poppy: 4, LarryE4: 4, Hassel: 4, Geeta: 8,
     };
 
     const { data: leaderData } = await supabase
