@@ -10,6 +10,42 @@ async function fetchCards() {
 
         const response = await fetch(`/api/pokemon-cards?user_id=${user_id}`);
         const cards = await response.json();
+
+        const totalCardsByRegion = {
+            Kanto: 151,
+            Johto: 100,
+            Hoenn: 135,
+            Sinnoh: 107,
+            Unova: 156,
+            Kalos: 72,
+            Alola: 88,
+            Galar: 96,
+            Paldea: 95
+        };
+        
+        // Initialize counts for each region (default to 0)
+        const regionCounts = Object.fromEntries(Object.keys(totalCardsByRegion).map(region => [region, 0]));
+        
+        // Count owned cards per region
+        cards.forEach(({ Card }) => {
+            if (Card?.region && regionCounts.hasOwnProperty(Card.region)) {
+                regionCounts[Card.region]++;
+            }
+        });
+        
+        // Display results
+        const statContainer = document.querySelector('.cardStatContainer');
+        statContainer.innerHTML = ''; // Clear previous entries
+        
+        Object.keys(totalCardsByRegion).forEach(region => {
+            const count = regionCounts[region] || 0;
+            const total = totalCardsByRegion[region];
+        
+            const statElement = document.createElement('h4');
+            statElement.textContent = `${region}: ${count}/${total} cards`;
+            statContainer.appendChild(statElement);
+        });
+        
         displayCards(cards);
     }
     catch (error) {

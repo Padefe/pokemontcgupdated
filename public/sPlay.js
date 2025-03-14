@@ -205,7 +205,6 @@ function setBest() {
     return new Promise(resolve => {
         const kantoAverages = {
             sell_price: 29.33324503,
-            dex_number: 76,
             hp: 61.98675497,
             height: 119.1276821,
             damage: 32.45033113,
@@ -220,7 +219,6 @@ function setBest() {
         function bestStatForPokemon(pokemon) {
             const adjustedStats = {
                 sell_price: adjustedStat(pokemon.sell_price, kantoAverages.sell_price, trainerAverages.sell_price),
-                dex_number: adjustedStat(pokemon.dex_number, kantoAverages.dex_number, trainerAverages.dex_number),
                 hp: adjustedStat(pokemon.card_hp, kantoAverages.hp, trainerAverages.hp),
                 height: adjustedStat(pokemon.card_height, kantoAverages.height, trainerAverages.height),
                 damage: adjustedStat(pokemon.card_damage, kantoAverages.damage, trainerAverages.damage),
@@ -230,8 +228,6 @@ function setBest() {
             bestStat = Object.keys(adjustedStats).reduce((a, b) => adjustedStats[a] > adjustedStats[b] ? a : b);
             if (bestStat === 'sell_price') {
                 value = pokemon.sell_price;
-            } else if (bestStat === 'dex_number') {
-                value = pokemon.dex_number;
             } else {
                 value = pokemon[`card_${bestStat}`];
             }
@@ -246,7 +242,6 @@ function setBest() {
 
             let total = {
                 sell_price: 0,
-                dex_number: 0,
                 card_hp: 0,
                 card_height: 0,
                 card_damage: 0,
@@ -255,7 +250,6 @@ function setBest() {
 
             totalPokemon.forEach(pokemon => {
                 total.sell_price += pokemon.sell_price;
-                total.dex_number += pokemon.dex_number;
                 total.card_hp += pokemon.card_hp;
                 total.card_height += pokemon.card_height;
                 total.card_damage += pokemon.card_damage;
@@ -264,7 +258,6 @@ function setBest() {
 
             const averages = {
                 sell_price: total.sell_price / numPokemon,
-                dex_number: total.dex_number / numPokemon,
                 hp: total.card_hp / numPokemon,
                 height: total.card_height / numPokemon,
                 damage: total.card_damage / numPokemon,
@@ -365,34 +358,6 @@ function displayStatsTrainer() {
             displayWinner();
             resolve();
         }, 0);
-    });
-}
-function selectDex() {
-    return new Promise(resolve => {
-        if (buttonFunction) {
-            document.getElementById("playerCardDex").style.color = "#E1CC01";
-
-            document.getElementById("trainerCardImage").src = trainerFirstCard.img_url;
-            document.getElementById("trainerCardName").textContent = "Name: " + trainerFirstCard.card_name;
-            document.getElementById("trainerCardDex").textContent = "Dex number: " + trainerFirstCard.dex_number;
-            document.getElementById("trainerCardHP").textContent = "HP: " + trainerFirstCard.card_hp;
-            document.getElementById("trainerCardHeight").textContent = "Height: " + trainerFirstCard.card_height + "cm";
-            document.getElementById("trainerCardWeight").textContent = "Weight: " + trainerFirstCard.card_weight + "kg";
-            document.getElementById("trainerCardDamage").textContent = "Damage: " + trainerFirstCard.card_damage;
-            document.getElementById("trainerCardSell").textContent = "Sell Value: $" + trainerFirstCard.sell_price;
-            document.getElementById("trainerCardDex").style.color = "#E1CC01";
-
-            buttonFunction = false;
-            setTimeout(() => {
-                value = trainerFirstCard.dex_number;
-                playerStatValue = playerFirstCard.dex_number;
-
-                console.log(value);
-                console.log(playerStatValue);
-                displayWinner();
-                resolve();
-            }, 1000);
-        }
     });
 }
 function selectHP() {
