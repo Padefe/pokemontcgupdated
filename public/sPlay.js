@@ -463,9 +463,6 @@ function selectDamage() {
             setTimeout(() => {
                 value = trainerFirstCard.card_damage;
                 playerStatValue = playerFirstCard.card_damage;
-
-                console.log(value);
-                console.log(playerStatValue);
                 displayWinner();
                 resolve();
             }, 1000);
@@ -491,9 +488,6 @@ function selectSell() {
             setTimeout(() => {
                 value = trainerFirstCard.sell_price;
                 playerStatValue = playerFirstCard.sell_price;
-
-                console.log(value);
-                console.log(playerStatValue);
                 displayWinner();
                 resolve();
             }, 1000);
@@ -503,9 +497,6 @@ function selectSell() {
 
 function displayWinner() {
     return new Promise(resolve => {
-        console.log(playerDeck);
-        console.log(trainerDeck);
-
         if (value > playerStatValue) {
             console.log(`Trainer wins with ${bestStat}!`);
             displayBattleResult("Trainer Wins!");
@@ -585,7 +576,6 @@ function displayWinner() {
             else if (trainerDeck.length === 0) {
                 winner();
             }
-
         }
         setTimeout(resolve, 0);
     });
