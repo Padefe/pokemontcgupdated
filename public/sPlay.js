@@ -592,21 +592,33 @@ function displayWinner() {
 }
 
 async function winner() {
-    const response_user = await fetch('/api/addMoney', {
-        method: 'POST', // This should be POST
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ storedUserId, selectedTrainer })
-    });
-
-    const data = await response_user.json(); // Fixes the incorrect variable
-
-    alert("You WON!");
     try {
+        // Send a request to add money
+        const response_user = await fetch('/api/addMoney', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ storedUserId, selectedTrainer })
+        });
+
+        // Check if the response is successful
+        if (!response_user.ok) {
+            throw new Error('Failed to update money');
+        }
+
+        // Parse the response
+        const data = await response_user.json();
+
+        // If the response is successful, show the alert
+        alert("You WON!");
+
+        // Proceed with redirection only if everything is successful
         window.location.href = "/play-start.html";
+
     } catch (error) {
-        console.error("Redirect failed:", error);
+        // Handle any errors that occur during the process
+        console.error("Error in winner function:", error);
     }
 }
 
