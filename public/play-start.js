@@ -30,6 +30,11 @@ async function singleplayer() {
             <option value="Johto">Johto</option>
             <option value="Hoenn">Hoenn</option>
             <option value="Sinnoh">Sinnoh</option>
+            <option value="Unova">Unova</option>
+            <option value="Kalos">Kalos</option>
+            <option value="Alola">Alola</option>
+            <option value="Galar">Galar</option>
+            <option value="Paldea">Paldea</option>
         </select>
         <button id="submit-region">Choose region</button>
     `;
@@ -183,7 +188,115 @@ async function singleplayer() {
             `;
             singleplayerL.innerHTML = optionsHTML;
         }
+        else if (selectedRegion === "Kalos") {
+            gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
+            let optionsHTML = `
+            <label for="gymLeader">Choose gym leader:</label>
+            <p>* means you have beaten them before</p>
+            <select id="gymLeader" name="gymLeader">
+            `;
 
+            const gymLeaders = [
+                "Viola", "Grant", "Korrina", "Ramos", "Clemont",
+                "Valerie", "Olympia", "Wulfric", "Malva", "Wikstrom",
+                "Drasna", "Siebold", "Dianthe"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
+            </select>
+            <button id="submit-gymLeader">Choose gym leader</button>
+            `;
+            singleplayerL.innerHTML = optionsHTML;
+        }       
+        else if (selectedRegion === "Alola") {
+            gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
+            let optionsHTML = `
+            <label for="gymLeader">Choose gym leader:</label>
+            <p>* means you have beaten them before</p>
+            <select id="gymLeader" name="gymLeader">
+            `;
+
+            const gymLeaders = [
+                "Hala", "Olivia", "Nanu", "Hapu", "HalaE4", "OliviaE4",
+                "Acerola", "Kahili", "Kukui", "Hau", "Sophocles",
+                "Ryuki", "Gladion", "Molayne", "Plumeria", "HapuChallenger",
+                "Faba", "Tristan"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
+            </select>
+            <button id="submit-gymLeader">Choose gym leader</button>
+            `;
+            singleplayerL.innerHTML = optionsHTML;
+        }
+        else if (selectedRegion === "Galar") {
+            gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
+            let optionsHTML = `
+            <label for="gymLeader">Choose gym leader:</label>
+            <p>* means you have beaten them before</p>
+            <select id="gymLeader" name="gymLeader">
+            `;
+
+            const gymLeaders = [
+                "Milo", "Nessa", "Kabu", "Bea", "Allister", "Opal",
+                "Gordie", "Melony", "Piers", "Raihan", "Marnie", "Hop",
+                "Bede", "NessaOpponent", "BeaOpponent", "AllisterOpponent",
+                "AllisterOpponent", "Leon"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
+            </select>
+            <button id="submit-gymLeader">Choose gym leader</button>
+            `;
+            singleplayerL.innerHTML = optionsHTML;
+        }
+        else if (selectedRegion === "Paldea") {
+            gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
+            let optionsHTML = `
+            <label for="gymLeader">Choose gym leader:</label>
+            <p>* means you have beaten them before</p>
+            <select id="gymLeader" name="gymLeader">
+            `;
+
+            const gymLeaders = [
+                "Katy", "Brassius", "Iono", "Kofu", "Larry", "Ryme", "Tulip",
+                "Grusha", "Rika", "Poppy", "LarryE4", "Hassel", "Geeta"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
+            </select>
+            <button id="submit-gymLeader">Choose gym leader</button>
+            `;
+            singleplayerL.innerHTML = optionsHTML;
+        }
         // Add event listener to gym leader selection button
         document.getElementById('submit-gymLeader').addEventListener('click', () => {
             const selectedGymLeader = document.getElementById('gymLeader').value;

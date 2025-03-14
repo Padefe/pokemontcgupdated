@@ -24,21 +24,23 @@ export async function fetchTrainerReward(selectedT, user_id) {
         Shauntal: 1, Grimsley: 1, Caitlin: 1, Marshal: 1, Shauntal2: 1, Grimsley2: 1, Caitlin2: 1,
         Marshal2: 1, Alder: 1,
 
-        // **Kalos**
-        Viola: 1, Grant: 2, Korrina: 3, Ramos: 4, Clemont: 5, Valerie: 6, Olympia: 7, Wulfric: 8,
-        Malva: 9, Siebold: 10, Wikstrom: 11, Drasna: 12, Diantha: 13,
+        // **KalosOK**
+        Viola: 1, Grant: 1, Korrina: 1, Ramos: 1, Clemont: 1, Valerie: 1, Olympia: 1, Wulfric: 1,
+        Malva: 1, Siebold: 1, Wikstrom: 1, Drasna: 1, Diantha: 1,
 
-        // **Alola (Trial Captains & Kahunas)**
-        Ilima: 1, Lana: 2, Kiawe: 3, Mallow: 4, Sophocles: 5, Acerola: 6, Nanu: 7, Hapu: 8,
-        Olivia: 9, Kahili: 10, Molayne: 11, Hala: 12, Kukui: 13,
+        // **Alola (Trial Captains & Kahunas)OK**
+        Hala: 1, Olivia: 1, Nanu: 1, Hapu: 1, HalaE4: 1, OliviaE4: 1, Acerola: 1, Kahili: 1,
+        Kukui: 1, Hau: 1, Sophocles: 1, Ryuki: 1, Gladion: 1, Gladion: 1, Molayne: 1, Plumeria: 1,
+        HapuChallenger: 1, Faba: 1, Tristan: 1, 
 
         // **Galar**
-        Milo: 1, Nessa: 2, Kabu: 3, BeaAllister: 4, Opal: 5, GordieMelony: 6, Piers: 7, Raihan: 8,
-        Marnie: 9, Bede: 10, Hop: 11, Leon: 12,
+        Milo: 1, Nessa: 1, Kabu: 1, Bea: 1, Allister: 1, Opal: 1, Gordie: 1, Melony: 1,Piers: 1, 
+        Raihan: 1, Marnie: 1, Hop: 1, Bede: 1, NessaOpponent: 1, BeaOpponent: 1, AllisterOpponent: 1,
+        RaihanOpponent: 1, Leon: 1,
 
         // **Paldea**
-        Katy: 1, Brassius: 2, Iono: 3, Kofu: 4, Larry: 5, Ryme: 6, Tulip: 7, Grusha: 8,
-        Rika: 9, Poppy: 10, LarryE4: 11, Hassel: 12, Geeta: 13,
+        Katy: 1, Brassius: 1, Iono: 1, Kofu: 1, Larry: 1, Ryme: 1, Tulip: 1, Grusha: 1,
+        Rika: 1, Poppy: 1, LarryE4: 1, Hassel: 1, Geeta: 1,
     };
 
     const { data: leaderData } = await supabase
