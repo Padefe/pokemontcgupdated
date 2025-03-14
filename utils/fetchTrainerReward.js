@@ -3,12 +3,13 @@ import { supabase } from '../config/supabase.js';
 export async function fetchTrainerReward(selectedT, user_id) {
     const trainerRewards = {
         // **Kanto**
-        Brock: 1, Misty: 2, LtSurge: 3, Erika: 4, Koga: 5, Sabrina: 6, Blaine: 7, Giovanni: 8,
-        Lorelei: 9, Bruno: 10, Agatha: 11, Lance: 12, Gary: 13,
+        Brock: 1, Misty: 1, LtSurge: 1, Erika: 1, Koga: 1, Sabrina: 1, Blaine: 1, Giovanni: 1,
+        Lorelei: 1, Bruno: 1, Agatha: 1, Lance: 1, Gary: 1,
 
         // **Johto**
-        Falkner: 1, Bugsy: 2, Whitney: 3, Morty: 4, Chuck: 5, Jasmine: 6, Pryce: 7, Clair: 8,
-        Will: 9, KogaE4: 10, BrunoE4: 11, Karen: 12, LanceChampion: 13,
+        Falkner: 1, Bugsy: 1, Whitney: 1, Morty: 1, Chuck: 1, Jasmine: 1, Pryce: 1, Clair: 1,
+        Will: 1, KogaE4: 1, BrunoE4: 1, Karen: 1, LanceChampion: 1, LtSurgeJ: 1, SabrinaJ: 1,
+        ErikaJ: 1, Janine: 1, MistyJ: 1, BrockJ: 1, BlaineJ: 1, Blue: 1, Red: 1, 
 
         // **Hoenn**
         Roxanne: 1, Brawly: 2, Wattson: 3, Flannery: 4, Norman: 5, Winona: 6, TateLiza: 7, Wallace: 8,

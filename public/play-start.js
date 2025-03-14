@@ -48,7 +48,7 @@ async function singleplayer() {
             const gymLeaders = [
                 "Brock", "Misty", "LtSurge", "Erika", "Koga",
                 "Sabrina", "Blaine", "Giovanni", "Lorelei",
-                "Bruno", "Agatha", "Lance"
+                "Bruno", "Agatha", "Lance", "Gary"
             ];
 
             // Loop through the gym leaders and check if they should have an asterisk
@@ -80,7 +80,10 @@ async function singleplayer() {
 
             const gymLeaders = [
                 "Falkner", "Bugsy", "whitney", "Morty", "Chuck",
-                "Jasmine", "Pryce", "Clair"
+                "Jasmine", "Pryce", "Clair", "Will", "KogaE4",
+                "BrunoE4", "Karen", "LanceChampion", "LtSurgeJ",
+                "SabrinaJ", "ErikaJ", "Janine", "MistyJ", "BrockJ",
+                "BlaineJ", "BlueJ", "Red"
             ];
 
             // Loop through the gym leaders and check if they should have an asterisk
