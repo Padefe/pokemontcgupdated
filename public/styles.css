@@ -53,6 +53,15 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    flex: 1;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin: 0px 50px;
+    padding: 20px 0px;
 }
 
 /* Card Styling */
@@ -98,11 +107,24 @@ h1 {
     row-gap: 5px;
     column-gap: 25px;
     justify-content: center;
+    flex: 1;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin: 0px 50px;
+    padding: 20px 0px;
 }
 
 .cardStatContainer h4 {
-    margin: 5px;
-    margin-bottom: 25px;
+    margin: 5px 5px;
+}
+#containerMaster
+{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 /* Mobile Responsiveness */
