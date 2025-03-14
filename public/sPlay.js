@@ -592,6 +592,8 @@ function displayWinner() {
 }
 
 async function winner() {
+    if (button.disabled) return; // Prevent double execution
+    button.disabled = true; // Disable button to prevent multiple clicks
     const response_user = await fetch('/api/addMoney', {
         method: 'POST', // This should be POST
         headers: {
@@ -602,7 +604,6 @@ async function winner() {
 
     const data = await response_user.json(); // Fixes the incorrect variable
 
-    console.log("Game over!");
     alert("You WON!");
     try {
         window.location.href = "/play-start.html";
@@ -612,7 +613,6 @@ async function winner() {
 }
 
 function loser() {
-    console.log("Game over!");
     alert("GAME OVER! No prize");
     window.location.href = "/play-start.html";
 }

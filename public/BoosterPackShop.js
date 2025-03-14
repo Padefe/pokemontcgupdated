@@ -57,7 +57,9 @@ function displayMoney(money) {
     const moneyContainer = document.getElementById('money-container');
     if (moneyContainer) {
         const moneyValue = money?.balance ?? 0;
-        moneyContainer.innerHTML = `<p>Money: $${moneyValue}</p>`;
+        // Format the money value to 2 decimal places
+        const formattedMoney = parseFloat(moneyValue).toFixed(2);
+        moneyContainer.innerHTML = `<p>Money: $${formattedMoney}</p>`;
     } else {
         console.error('Money container not found in DOM.');
     }

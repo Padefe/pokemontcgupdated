@@ -33,12 +33,12 @@ export async function fetchTrainerReward(selectedT, user_id) {
         Kukui: 1, Hau: 1, Sophocles: 1, Ryuki: 1, Gladion: 1, Gladion: 1, Molayne: 1, Plumeria: 1,
         HapuChallenger: 1, Faba: 1, Tristan: 1, 
 
-        // **Galar**
+        // **GalarOK**
         Milo: 1, Nessa: 1, Kabu: 1, Bea: 1, Allister: 1, Opal: 1, Gordie: 1, Melony: 1,Piers: 1, 
         Raihan: 1, Marnie: 1, Hop: 1, Bede: 1, NessaOpponent: 1, BeaOpponent: 1, AllisterOpponent: 1,
         RaihanOpponent: 1, Leon: 1,
 
-        // **Paldea**
+        // **PaldeaOK**
         Katy: 1, Brassius: 1, Iono: 1, Kofu: 1, Larry: 1, Ryme: 1, Tulip: 1, Grusha: 1,
         Rika: 1, Poppy: 1, LarryE4: 1, Hassel: 1, Geeta: 1,
     };
@@ -51,7 +51,6 @@ export async function fetchTrainerReward(selectedT, user_id) {
         .single();
 
     if (!leaderData) {
-        console.log("Test");
         const { error: insertError } = await supabase
             .from("Gymleader_Check")
             .insert([{ user_id: user_id, leader: selectedT }]);
@@ -60,5 +59,6 @@ export async function fetchTrainerReward(selectedT, user_id) {
             return res.status(500).json({ success: false, message: 'Failed to insert leader' });
         }
     }
+
     return { reward: trainerRewards[selectedT] ?? 0 };
 }
