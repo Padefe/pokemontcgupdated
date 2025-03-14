@@ -28,6 +28,8 @@ async function singleplayer() {
         <select id="region" name="region">
             <option value="Kanto">Kanto</option>
             <option value="Johto">Johto</option>
+            <option value="Hoenn">Hoenn</option>
+            <option value="Sinnoh">Sinnoh</option>
         </select>
         <button id="submit-region">Choose region</button>
     `;
@@ -99,6 +101,89 @@ async function singleplayer() {
             `;
             singleplayerL.innerHTML = optionsHTML;
         }
+        else if (selectedRegion === "Hoenn") {
+            gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
+            let optionsHTML = `
+            <label for="gymLeader">Choose gym leader:</label>
+            <p>* means you have beaten them before</p>
+            <select id="gymLeader" name="gymLeader">
+            `;
+
+            const gymLeaders = [
+                "Roxanne", "Brawly", "Wattson", "Flannery", "Norman",
+                "Winona", "TateAndLiza", "Wallace", "Sidney", "Pheobe",
+                "Glacia", "Drake", "Steven"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
+            </select>
+            <button id="submit-gymLeader">Choose gym leader</button>
+            `;
+            singleplayerL.innerHTML = optionsHTML;
+        }
+        else if (selectedRegion === "Sinnoh") {
+            gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
+            let optionsHTML = `
+            <label for="gymLeader">Choose gym leader:</label>
+            <p>* means you have beaten them before</p>
+            <select id="gymLeader" name="gymLeader">
+            `;
+
+            const gymLeaders = [
+                "Roark", "Gardenia", "Maylene", "CrasherWake", "Fantina",
+                "Byron", "Candice", "Volkner", "Aaron", "Bertha",
+                "Flint", "Lucian", "Cynthia"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
+            </select>
+            <button id="submit-gymLeader">Choose gym leader</button>
+            `;
+            singleplayerL.innerHTML = optionsHTML;
+        }
+        else if (selectedRegion === "Unova") {
+            gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
+            let optionsHTML = `
+            <label for="gymLeader">Choose gym leader:</label>
+            <p>* means you have beaten them before</p>
+            <select id="gymLeader" name="gymLeader">
+            `;
+
+            const gymLeaders = [
+                "CilanChiliCress", "Lenora", "Burgh", "Elesa", "Clay",
+                "Skyla", "Brycen", "Drayden", "Shauntal", "Grimsley",
+                "Caitlin", "Marshal", "Shauntal2", "Grimsley2", "Caitlin2",
+                "Marshal2", "Alder"
+            ];
+
+            // Loop through the gym leaders and check if they should have an asterisk
+
+            gymLeaders.forEach(leader => {
+                const asterisk = gymLeadersWithAsterisk.includes(leader) ? '*' : '';
+                optionsHTML += `<option value="${leader}">${leader} ${asterisk}</option>`;
+            });
+
+            optionsHTML += `
+            </select>
+            <button id="submit-gymLeader">Choose gym leader</button>
+            `;
+            singleplayerL.innerHTML = optionsHTML;
+        }
+
         // Add event listener to gym leader selection button
         document.getElementById('submit-gymLeader').addEventListener('click', () => {
             const selectedGymLeader = document.getElementById('gymLeader').value;
