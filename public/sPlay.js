@@ -112,13 +112,6 @@ function startRound() {
     let playerDeckUpdate;
     let trainerDeckUpdate;
 
-    if (trainerDeck.length === 0) {
-        displayWinner();
-    }
-    else if (playerDeck.length === 0) {
-        displayWinner();
-    }
-
     if (isPlayerTurn === true) {
         document.querySelectorAll(".statButton").forEach(button => {
             button.style.display = "flex";
