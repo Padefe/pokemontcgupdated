@@ -102,6 +102,13 @@ function startRound() {
         });
     }
 
+    if (playerDeck.length === 0) {
+        loser();
+    }
+    else if (trainerDeck.length === 0) {
+        winner();
+    }
+
     if (playerDeckUpdate && playerDeckUpdate.length > 0) {
         playerDeck = playerDeckUpdate;
         trainerDeck = trainerDeckUpdate;
@@ -605,12 +612,6 @@ function displayWinner() {
             }
             else {
                 isPlayerTurn = false;
-            }
-            if (playerDeck.length === 0) {
-                loser();
-            }
-            else if (trainerDeck.length === 0) {
-                winner();
             }
         }
         setTimeout(resolve, 0);
