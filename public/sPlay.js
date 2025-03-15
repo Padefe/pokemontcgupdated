@@ -8,27 +8,18 @@ const selectedTrainer = urlParams.get('trainer');
 const userId = urlParams.get('user_id');
 const selectedCardIds = urlParams.get('cards') ? urlParams.get('cards').split(',') : [];
 
+let user_id;
 
 let playerDeck;
 let trainerDeck;
 
 async function startGame() {
-    console.log("Selected Region:", selectedRegion);
-    console.log("Selected Trainer:", selectedTrainer);
-    console.log("User ID:", userId);
-    console.log("Selected Card IDs:", selectedCardIds);
-
-    let user_id;
-
     if (storedUserId !== userId) {
         alert("Cheater");
         window.location.href = "/";
     } else {
         user_id = userId;
     }
-
-    console.log("test1");
-
 
     const response = await fetch(`/api/pokemon-cards?user_id=${user_id}`);
     const playerCards = await response.json();
@@ -198,11 +189,11 @@ function startRound() {
 function setBest() {
     return new Promise(resolve => {
         const kantoAverages = {
-            sell_price: 29.33324503,
-            hp: 61.98675497,
-            height: 119.1276821,
-            damage: 32.45033113,
-            weight: 45.94165563
+            sell_price: 7.183531707,
+            hp: 83.16097561,
+            height: 123.5356878,
+            damage: 49.62926829,
+            weight: 68.06741463
         };
 
         function adjustedStat(pokemonStat, kantoStat, trainerStat) {
