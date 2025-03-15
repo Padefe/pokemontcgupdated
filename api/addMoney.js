@@ -3,17 +3,14 @@ import { fetchTrainerReward } from '../utils/fetchTrainerReward.js';
 import { supabase } from '../config/supabase.js';
 
 export default async function handler(req, res) {
-    const { storedUserId, selectedTrainer, sellprice, cardid } = req.body;
+    const { storedUserId, selectedTrainer, sellprice, cardid, cards, sellExcess } = req.body;
 
     const sell_price = sellprice;
     const card_id = cardid;
     const user_id = storedUserId;
     const selectedT = selectedTrainer;
 
-    console.log("test1");
-
     if (sell_price === undefined) {
-        console.log("test2");
         try {
             const userMoney = await fetchUserMoney(user_id);
             const reward = await fetchTrainerReward(selectedT, user_id);
@@ -42,9 +39,8 @@ export default async function handler(req, res) {
             console.error(error);
             return res.status(500).json({ error: 'Failed to fetch money' });
         }
-    } else {
-        console.log(sell_price);
-        console.log(user_id);
+    }
+    else {
         try {
             const userMoney = await fetchUserMoney(user_id);
             const moneyValue = userMoney?.balance ?? 0;

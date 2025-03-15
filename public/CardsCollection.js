@@ -95,6 +95,25 @@ async function sellCard(card_id, sell_price) {
     fetchCards(cards)
 }
 
+async function sellExcess(cards) {
+    const sellExcess = true
+
+    const storedUserId = localStorage.getItem('userid');
+    const response = await fetch('/api/addMoney', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ cards, sellExcess, storedUserId })
+    });
+
+    if (!response.ok) {
+        console.error("Failed to sell card:", await response.text());
+        return;
+    }
+    fetchCards(cards)
+}
+
 document.addEventListener('DOMContentLoaded', fetchCards);
 function logoutUser() {
     localStorage.removeItem("jwt_token"); // Remove token

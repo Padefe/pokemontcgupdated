@@ -532,7 +532,7 @@ export async function trainerPokemon(selectedT) {
 
         ];
     }
-    else if (selectedT === "ChiliCilanCress") {
+    else if (selectedT === "CilanChiliCress") {
         return [
             "fa22dff2-dd43-4662-845b-52545a3265cf",
             "7ade65bf-4425-4b65-a26f-cef343f03bb7",
