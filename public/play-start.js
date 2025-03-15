@@ -16,7 +16,6 @@ async function singleplayer() {
 
         const response = await fetch(`/api/trainer-cards?user_id=${user_id}`);
         check = await response.json();
-        console.log();
     }
     catch (error) {
         console.error('Failed to fetch cards', error);
@@ -42,7 +41,6 @@ async function singleplayer() {
     // Add event listener to the button
     document.getElementById('submit-region').addEventListener('click', () => {
         selectedRegion = document.getElementById('region').value;
-        console.log("Selected Region:", selectedRegion);
         const singleplayerL = document.getElementById('singleplayerL');
         if (selectedRegion === "Kanto") {
             gymLeadersWithAsterisk = check.map(item => item.leader); // Gym leaders that should have an asterisk
@@ -74,7 +72,6 @@ async function singleplayer() {
             // Add event listener to gym leader selection button
             document.getElementById('submit-gymLeader').addEventListener('click', () => {
                 const selectedGymLeader = document.getElementById('gymLeader').value;
-                console.log("Selected Gym Leader:", selectedGymLeader);
             });
         }
         else if (selectedRegion === "Johto") {
@@ -300,11 +297,9 @@ async function singleplayer() {
         // Add event listener to gym leader selection button
         document.getElementById('submit-gymLeader').addEventListener('click', () => {
             const selectedGymLeader = document.getElementById('gymLeader').value;
-            console.log("Selected Gym Leader:", selectedGymLeader);
         });
         document.getElementById('submit-gymLeader').addEventListener('click', () => {
             selectedLeader = document.getElementById('gymLeader').value;
-            console.log("Selected gym leader:", selectedLeader);
 
             const user_id = localStorage.getItem('userid');
             if (!user_id) {
@@ -317,7 +312,6 @@ async function singleplayer() {
             fetch(`/api/pokemon-cards?user_id=${user_id}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Fetched Cards:", data);
                     displayCards(data);
                 })
                 .catch(error => {
@@ -369,7 +363,6 @@ function toggleCardSelection(cardId, image) {
         selectedCards = selectedCards.filter(card => card.id !== cardId); // Remove card from selection
         cardElement.classList.remove('selected');
         image.style.border = '';  // Reset border style
-        console.log("Card deselected:", cardId);
     } else {
         // Check if the maximum number of selected cards (6) has been reached
         if (selectedCards.length >= 6) {
@@ -380,7 +373,6 @@ function toggleCardSelection(cardId, image) {
         selectedCards.push({ id: cardId, src: image.src }); // Store both ID and image src
         cardElement.classList.add('selected');
         image.style.border = '2px solid green';  // Add border to indicate selection
-        console.log("Card selected:", cardId);
     }
 
     // Update the selected cards display
@@ -414,9 +406,7 @@ function startPlay() {
     else {
         const user_id = localStorage.getItem('userid');
 
-        console.log(selectedCards);
         const selectedCardIds = selectedCards.map(card => card.id);
-        console.log(selectedCardIds);
         // Construct the URL with query parameters
         const playPageUrl = `/sPlay.html?region=${selectedRegion}&trainer=${selectedLeader}&user_id=${user_id}&cards=${selectedCardIds.join(',')}`;
 

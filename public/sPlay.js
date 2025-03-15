@@ -46,6 +46,7 @@ async function startGame() {
         img_url: card.Card.img_url,
         card_type: card.Card.card_type,
         card_weak: card.Card.card_weak,
+        region: card.Card.region
     }));
 
     trainerDeck = trainerDeck.map(card => ({
@@ -60,6 +61,7 @@ async function startGame() {
         img_url: card.img_url,
         card_type: card.card_type,
         card_weak: card.card_weak,
+        region: card.region
     }));
 
 
@@ -75,15 +77,6 @@ async function startGame() {
 
     playerFirstCard = playerDeck[0];
     trainerFirstCard = trainerDeck[0];
-
-    console.log("Player's Cards:", playerDeck);
-    console.log("Trainer's Cards:", trainerDeck);
-
-    console.log(playerFirstCard);
-    console.log(trainerFirstCard);
-
-
-
 }
 startGame();
 let bestStat;
@@ -111,7 +104,6 @@ function startRound() {
 
     if (playerDeckUpdate && playerDeckUpdate.length > 0) {
         playerDeck = playerDeckUpdate;
-        console.log("test");
         trainerDeck = trainerDeckUpdate;
     }
     if (winnerInfoDiv) {
@@ -188,26 +180,110 @@ function startRound() {
 
 function setBest() {
     return new Promise(resolve => {
-        const kantoAverages = {
-            sell_price: 7.183531707,
-            hp: 83.16097561,
-            height: 123.5356878,
-            damage: 49.62926829,
-            weight: 68.06741463
-        };
+        let regionAverages;
 
-        function adjustedStat(pokemonStat, kantoStat, trainerStat) {
-            const adjustment = (pokemonStat - kantoStat) + (pokemonStat - trainerStat);
+        if (selectedRegion == "Kanto") {
+            const kantoAverages = {
+                sell_price: 29.33324503,
+                hp: 61.98675497,
+                height: 119.1276821,
+                damage: 32.45033113,
+                weight: 45.94165563
+            };
+            regionAverages = kantoAverages;
+        }
+        else if (selectedRegion == "Johto") {
+            const johtoAverages = {
+                sell_price: 16.5426	,
+                hp: 61.3,
+                height: 116.4082,
+                damage: 30.5,
+                weight: 49.0927
+            };
+            regionAverages = johtoAverages;
+        }
+        else if (selectedRegion == "Hoenn") {
+            const hoennAverages = {
+                sell_price: 4.163333333,
+                hp: 68.51851852,
+                height: 123.0677037,
+                damage: 29.62962963,
+                weight: 67.07792593
+            };
+            regionAverages = hoennAverages;
+        }
+        else if (selectedRegion == "Sinnoh") {
+            const sinnohAverages = {
+                sell_price: 2.048598131,
+                hp: 81.12149533,
+                height: 113.3504673,
+                damage: 39.1588785,
+                weight: 74.76579439
+            };
+            regionAverages = sinnohAverages;
+        }
+        else if (selectedRegion == "Unova") {
+            const unovaAverages = {
+                sell_price: 0.709487179,
+                hp: 86.47435897,
+                height: 103.2607692,
+                damage: 50.70512821,
+                weight: 52.40301282
+            };
+            regionAverages = unovaAverages;
+        }
+        else if (selectedRegion == "Kalar") {
+            const kalarAverages = {
+                sell_price: 1.042638889,
+                hp: 88.88888889,
+                height: 115.1466667	,
+                damage: 49.44444444,
+                weight: 58.07791667
+            };
+            regionAverages = kalarAverages;
+        }
+        else if (selectedRegion == "Alola") {
+            const alolaAverages = {
+                sell_price: 0.596818182,
+                hp: 99.31818182,
+                height: 135.7168182,
+                damage: 66.59090909,
+                weight: 109.2077273
+            };
+            regionAverages = alolaAverages;
+        }
+        else if (selectedRegion == "Galar") {
+            const galarAverages = {
+                sell_price: 0.313645833,
+                hp: 106.4583333,
+                height: 151.1829167,
+                damage: 77.8125,
+                weight: 86.91072917
+            };
+            regionAverages = galarAverages;
+        }
+        else if (selectedRegion == "Paldea") {
+            const paldeaAverages = {
+                sell_price: 1.915916667,
+                hp: 108.0833333,
+                height: 144.9705,
+                damage: 82.75,
+                weight: 87.97491667
+            };
+            regionAverages = paldeaAverages;
+        }
+        function adjustedStat(pokemonStat, regionStat, trainerStat) {
+            const adjustment = (pokemonStat - regionStat) + (pokemonStat - trainerStat);
             return adjustment;
         }
 
         function bestStatForPokemon(pokemon) {
             const adjustedStats = {
-                sell_price: adjustedStat(pokemon.sell_price, kantoAverages.sell_price, trainerAverages.sell_price),
-                hp: adjustedStat(pokemon.card_hp, kantoAverages.hp, trainerAverages.hp),
-                height: adjustedStat(pokemon.card_height, kantoAverages.height, trainerAverages.height),
-                damage: adjustedStat(pokemon.card_damage, kantoAverages.damage, trainerAverages.damage),
-                weight: adjustedStat(pokemon.card_weight, kantoAverages.weight, trainerAverages.weight)
+                sell_price: adjustedStat(pokemon.sell_price, regionAverages.sell_price, trainerAverages.sell_price),
+                hp: adjustedStat(pokemon.card_hp, regionAverages.hp, trainerAverages.hp),
+                height: adjustedStat(pokemon.card_height, regionAverages.height, trainerAverages.height),
+                damage: adjustedStat(pokemon.card_damage, regionAverages.damage, trainerAverages.damage),
+                weight: adjustedStat(pokemon.card_weight, regionAverages.weight, trainerAverages.weight)
             };
 
             bestStat = Object.keys(adjustedStats).reduce((a, b) => adjustedStats[a] > adjustedStats[b] ? a : b);
@@ -328,10 +404,6 @@ function displayStatsTrainer() {
                                 bestStat === "dex_number" ? "dex_number" :
                                     bestStat === "sell_value" ? "sell_value" :
                                         bestStat];
-            console.log(`Trainer's ${bestStat}: ${value}`);
-            console.log(`Player's ${bestStat}: ${playerStatValue}`);
-
-
         }
         setTimeout(() => {
             displayWinner();
@@ -358,9 +430,6 @@ function selectHP() {
             setTimeout(() => {
                 value = trainerFirstCard.card_hp;
                 playerStatValue = playerFirstCard.card_hp;
-
-                console.log(value);
-                console.log(playerStatValue);
                 displayWinner();
                 resolve();
             }, 1000);
@@ -387,8 +456,6 @@ function selectHeight() {
                 value = trainerFirstCard.card_height;
                 playerStatValue = playerFirstCard.card_height;
 
-                console.log(value);
-                console.log(playerStatValue);
                 displayWinner();
                 resolve();
             }, 1000);
@@ -415,8 +482,6 @@ function selectWeight() {
                 value = trainerFirstCard.card_weight;
                 playerStatValue = playerFirstCard.card_weight;
 
-                console.log(value);
-                console.log(playerStatValue);
                 displayWinner();
                 resolve();
             }, 1000);
@@ -477,15 +542,12 @@ function selectSell() {
 function displayWinner() {
     return new Promise(resolve => {
         if (value > playerStatValue) {
-            console.log(`Trainer wins with ${bestStat}!`);
             displayBattleResult("Trainer Wins!");
             moveCardsToWinner(trainerDeck);
         } else if (value < playerStatValue) {
-            console.log(`Player wins with ${bestStat}!`);
             displayBattleResult("Player Wins!");
             moveCardsToWinner(playerDeck);
         } else {
-            console.log(`It's a tie on ${bestStat}!`);
             displayBattleResult("Tie!");
             cardsTie();
         }
@@ -538,16 +600,11 @@ function displayWinner() {
 
             document.getElementById("nextRound").textContent = "Next Round";
 
-            console.log(playerDeck.length);
-            console.log(trainerDeck.length);
-
             if (winningDeck === playerDeck) {
                 isPlayerTurn = true;
-                console.log("YAY");
             }
             else {
                 isPlayerTurn = false;
-                console.log("NAY");
             }
             if (playerDeck.length === 0) {
                 loser();
