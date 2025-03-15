@@ -400,8 +400,8 @@ function updateSelectedCardsDisplay() {
 }
 
 function startPlay() {
-    if (!selectedRegion || !selectedLeader) {
-        alert("RELOAD SIDEN");
+    if (selectedCards.length === 0) {
+        alert("You must select a deck");
     }
     else {
         const user_id = localStorage.getItem('userid');
