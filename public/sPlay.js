@@ -239,7 +239,7 @@ function setBest() {
             };
             regionAverages = unovaAverages;
         }
-        else if (selectedRegion == "Kalar") {
+        else if (selectedRegion == "Kalos") {
             const kalarAverages = {
                 sell_price: 1.042638889,
                 hp: 88.88888889,
