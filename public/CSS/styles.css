@@ -116,6 +116,15 @@ h1 {
     margin: 0px 50px;
     padding: 20px 0px;
 }
+.grayed-out {
+    opacity: 0.4;
+    filter: grayscale(100%);
+}
+
+#region-filter-container
+{
+    margin: 0px 50px;
+}
 
 .cardStatContainer h4 {
     margin: 5px 5px;
