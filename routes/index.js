@@ -2,7 +2,7 @@ import express from 'express';
 import serverless from 'serverless-http';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import cardRoutes from '../routes/cardRoutes.js';
+import cardRoutes from './cardRoutes.js';
 import { config } from 'dotenv';
 
 config();

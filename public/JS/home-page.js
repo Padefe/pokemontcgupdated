@@ -7,7 +7,7 @@ async function login()
 
     try {
 
-        const response_user = await fetch('/api/login', {
+        const response_user = await fetch('/api/auth?action=login', {
             method: 'POST', // This should be POST
             headers: {
                 'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ async function register() {
         }
 
         // Send the request to the API
-        const response = await fetch("/api/register", {
+        const response = await fetch("/api/auth?action=register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
