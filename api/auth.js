@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
-    const { action } = req.query; // Example: /api/auth?action=login OR action=register
+    const { action } = req.query; 
 
     if (!action) {
         return res.status(400).json({ message: 'Missing action' });
